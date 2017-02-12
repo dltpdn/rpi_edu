@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+function extendDeep(parent, child){
+	var i;
+	var toString = Object.prototype.toString;
+	var arrStr = "[object Array]";
+	child = child || {};
+	for(i in parent){
+		if(parent.hasOwnProperty(i)){
+			if(typeof parent[i] === "object"){
+				child[i] = (toString.call(parent[i])=== arrStr) ? [] : {};
+				extendDeep(parent[i], child[i]);
+			}else{
+				child[i] = parent[i];
+			}
+		}
+	}
+	return child
+}
+var sup = {name : 'super', counts : [1,2,3], reads : {paper : true}};
+var sub = extendDeep(sup);
+console.log(sub);
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

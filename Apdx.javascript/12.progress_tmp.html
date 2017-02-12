@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.progress {
+	font-size: 11px;
+	font-family: Gulim, Georgia, Serif;
+	border: 1px solid #999;
+	width: 200px;
+	height: 20px;
+	position: relative;
+	overflow: hidden;
+	background-color: #CDCDCD;
+	background-image: url(../img/progress_bg.gif);
+	line-height: 20px;
+
+}
+
+.progress_text {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+	color: #000;
+	border-width: 0px;
+	
+}
+
+.progress_bar {
+	position: absolute;
+	overflow: hidden;
+	color: #fff;
+	background-color: #5892BF;
+	background-image:  url(../img/progress_bar.gif);
+	height: 100%;
+	width: 50%;
+}
+
+.progress_bar_text {
+	position: absolute;
+	text-align: center;
+	width: 200px;
+}
+</style>
+</head>
+<body>
+	<div>
+	<div class="progress">
+		<span class="progress_text">50%</span>
+		<div class="progress_bar">
+			<span class="progress_bar_text" style="">50%</span>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

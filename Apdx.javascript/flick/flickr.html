@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Flickr Feed Example</title>
+<style type="text/css">
+#placeHolder{
+    border : 1px solid #333;
+    width : 600px;
+    height : 600px;
+    overflow: auto;
+}
+.item{
+    min-height :180px;
+    padding-left : 240px;
+    background-repeat: no-repeat;
+    border-top : 1px solid #333;
+    margin-top : 0; margin-bottom : 0;
+    
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	feed();
+}
+
+
+function feed(){
+	var tag = document.getElementById('tag').value;
+	var URL = "http://api.flickr.com/services/feeds/photos_public.gne?tagmode=any&format=json&jsoncallback=res";
+	URL += "&tags="+tag;
+	
+	var script = document.createElement('script');
+	script.setAttribute("src", URL);
+	document.getElementsByTagName("head")[0].appendChild(script);
+}
+
+function res(data){
+    var div = document.getElementById('placeHolder');
+    div.innerHTML = "";
+    
+    console.log(data);
+    var link = document.createElement("a");
+    link.href = data.link;
+    link.innerHTML = data.link;
+    div.appendChild(link);
+    
+    for(var i=0; i < data.items.length; i++){
+    	var p = document.createElement("p");
+    	p.className = "item";
+        p.style.backgroundImage = "url(" + data.items[i].media.m + ")";
+    	
+    	var ul = document.createElement("ul");
+        var li = document.createElement("li");
+        ul.appendChild(li);
+        li.innerHTML = "title : " + data.items[i].title;
+        li = document.createElement('li');
+        ul.appendChild(li);
+        li.innerHTML = "author : " + data.items[i].author;
+        li = document.createElement('li');
+        ul.appendChild(li);
+        li.innerHTML = "published :" + data.items[i].published;
+        p.appendChild(ul);
+       div.appendChild(p);
+        
+    }
+}
+
+</script>
+</head>
+<body>
+	<input type="text" id="tag"/>
+	<button onclick="feed()">Feed</button>
+	<div id="placeHolder">
+	</div>
+</body>
+</html>

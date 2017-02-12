@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var init = function(){
+	alert("page loaded..");
+	var btn = document.getElementById("btn");
+	btn.addEventListener('click', btnClick, true);
+}
+
+var btnClick = function(evt){
+	var p = document.getElementById('content');
+//	var p = document.getElementsByTagName('p')[0];
+	p.innerHTML = "It's now "+new Date().toLocaleString();
+	p.setAttribute("style", "border:1px solid #000");
+}
+window.onload = init;
+</script>
+</head>
+<body>
+<button id="btn">show Date</button>
+<p id="content"></p>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	var body = document.getElementsByTagName("body")[0];
+	scanChild(body);
+	//scanChild2(body);
+}
+
+var scanChild = function(node){
+	console.log(node);
+	if(node && node.hasChildNodes()){
+		var child = node.firstChild;
+		while(child){
+			console.log(child);
+			child = child.nextSibling;
+			scanChild(child);
+		}
+	}
+	
+}
+
+
+var scanChild2 = function(node){
+	if(node && node.hasChildNodes()){
+		for(var i=0; i < node.childNodes.length; i++){
+			console.log(node.childNodes[i]);
+			scanChild2(node.childNodes[i]);
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<div>
+	<ul>
+		<li>Coffe</li>
+		<li>Milk</li>
+		<li>Beer</li>
+	</ul>
+	<a href="http://www.naver.com">naver</a>
+</div>
+<div>
+	<form>
+		<label>ID</label><input type="text"><br/>
+		<label>PWD</label><input type="password"><br/>
+		<button>Login</button>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ajax(xml) Plus-Example</title>
+<script type="text/javascript">
+function execute(){
+	var op1 = document.getElementById('op1').value;
+	var op2 = document.getElementById('op2').value;
+	var url = './jsp/plus_xml.jsp?op1='+op1+'&op2='+op2 ;
+	
+ xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var resDoc = xhr.responseXML;
+			var res = resDoc.getElementsByTagName('result')[0].getAttribute('value');
+			document.getElementById('result').value = res;
+		}
+	}
+	xhr.open('GET', url, true);
+	xhr.send();
+}
+
+</script>
+</head>
+<body>
+<input type="text" id="op1"/> + <input type="text" id="op2">
+<input type="button"  id="exe" value="=" onclick="execute()">
+<input type="text" id="result" readonly="readonly"/>
+</body>
+</html>

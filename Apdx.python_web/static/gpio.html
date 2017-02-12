@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#img_btn{
+	background-image: url('/static/on-off-power-buttons.jpg');
+	width: 132px; height : 72px;
+}
+.img_btn_off{
+	background-position: 0 -72px;
+}
+.img_btn_on{
+	background-position: 0 0;
+}
+
+</style>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+<script type="text/javascript">
+window.onload = function(){
+	var btn_led_on = document.querySelector('#btn_led_on');
+	var btn_led_off = document.querySelector('#btn_led_off');
+	var temp = document.querySelector('#temp');
+	var humi = document.querySelector('#humi');
+	var img_btn = document.querySelector('#img_btn');
+	
+	setInterval(function(){
+		sendAjax('/monitor', function(data){
+			var r = JSON.parse(data);
+			temp.textContent = r.temp;
+			humi.textContent = r.humi;
+		});
+	}, 1000);
+	
+	
+	btn_led_on.onclick= function(){
+		 var url = '/operate/led?val=on';
+		 sendAjax(url);
+	}
+	btn_led_off.onclick= function(){
+		 var url = '/operate/led?val=off';
+		 sendAjax(url);
+	}
+	
+	function sendAjax(url, fn){
+		xhr =new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+		//	console.log(xhr.readyState)
+			if(xhr.readyState == 4){
+				console.log(xhr.responseText)
+				if(fn){
+					fn(xhr.responseText);
+				}
+			}
+		}
+		xhr.open('GET', url);
+		xhr.send();  
+	}
+		socket = io.connect('http://' + document.domain + ':' + location.port);
+ 	    socket.on('connect', function() {
+ 	    	console.log('ws connect.');
+ 	       // socket.send(id.value + " login.");
+ 	    });
+ 	    socket.on('message', function(data){
+ 	    	console.log('message:'+data.data);
+ 	    	if(data.data == '1'){
+ 	    		img_btn.className = 'img_btn_on'
+ 	    	}else{
+ 	    		img_btn.className = 'img_btn_off'
+ 	    	}
+ 	    });
+
+ 	    socket.on('btn', function(data){
+ 	    	console.log('btn:'+data.data)
+ 	    	img_btn.className = 'img_btn_on'
+ 	    });
+}
+
+</script>
+</head>
+<body>
+
+<button id="btn_led_on">Led On</button>
+<button id="btn_led_off">Led Off</button><br/>
+<label>Tempature:</label><span id="temp"></span><br/>
+<label>Huminity:</label><span id="humi"></span><br/>
+<div id="img_btn" class="img_btn_off"></div>
+
+
+</body>
+</html>

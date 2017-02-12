@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Template Test page</title>
+</head>
+<body>
+	<h1>Flask Jinja Template Test Page</h1>
+	<p> Hello! My name is {{name}}</p>
+	{% if gender=='1' %}
+		<h3>Male</h3>
+	{% elif gender=='0' %}
+		<h3>Female</h3>
+	{% endif %}
+	<h3>Drinks</h3>
+	<ul>
+		{% for item in drinks %}
+		<li>{{item}}</li>
+		{% endfor %}
+	</ul> 
+	<img src="/static/happy.jpg"/>
+</body>
+</html>

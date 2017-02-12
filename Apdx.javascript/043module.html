@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+var module = (function(){
+	var i = 0;
+	function increment(){
+		i = i + 1;
+	}
+	
+	function getCount(){
+		increment();
+		return i;
+	}
+	return {
+		count : getCount
+	}
+	
+})();
+console.log(module.count());
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

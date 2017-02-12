@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var Person = function(name){
+    this.name = name;
+}
+
+Person.prototype.getName = function(){
+	return this.name;
+}
+
+var p1 = new Person('lee');
+var p2 = new Person('kim');
+console.log(p1.getName());
+console.log(p2.getName());
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

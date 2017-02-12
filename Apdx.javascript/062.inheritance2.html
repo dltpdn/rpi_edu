@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+var Super = function(name){
+	this.name = name;
+}
+
+Super.prototype.getName = function(){
+	return this.name + " from super";
+}
+
+var Sub = function(name){
+	this.parent(name);
+}
+Sub.prototype = new Super;
+Sub.prototype.constructor = Sub;
+Sub.prototype.parent = Super;
+Sub.prototype.getName = function(){
+	return this.name + ":" + Super.prototype.getName.call(this);
+}
+
+var sup = new Super('sup');
+var sub = new Sub('sub');
+console.log(sup.getName());
+console.log(sub.getName());
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

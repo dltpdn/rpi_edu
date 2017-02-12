@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function a(){
+	console.log("function a()");
+	var b = function(f){
+		console.log("function a > b()")
+		f();
+	};
+	return b;	
+};
+function b(){ 
+	console.log("function b()");
+}
+
+var c = a();
+c(b);
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+function extend(parent, child){
+	var i;
+	child = child || {};
+	for(i in parent){
+		if(parent.hasOwnProperty(i)){
+			child[i] = parent[i];
+		}
+	}
+	return child
+}
+var sup = {name : 'super'};
+var sub = extend(sup);
+console.log(sub.name);
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>progress bar example</title>
+<link href="progressbar.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="progressbar.js"></script>
+<script type="text/javascript">
+var p;
+function create(){
+	p = new Progress(400, 30);
+}
+
+function apply(){
+	var percent = document.getElementById('percent');
+	p.setPercent(percent.value);
+}
+</script>
+</head>
+<body>
+    <button onclick="create()">create</button>
+    <input type="number" id="percent"/>
+    <button onclick="apply()">apply</button>
+</body>
+</html>

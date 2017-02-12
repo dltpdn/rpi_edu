@@ -1,0 +1,19 @@
+.progress{
+	border: 1px solid #000;
+	position:relative;
+	background:	#f00 url(./img/progress_bg.gif);
+	font: 12px gulim;
+}
+.progress_bar{
+	height:100%;
+	background:#0f0 url(./img/progress_bar.gif);
+	position:absolute; 	left:0px; top:0px;
+	overflow: hidden;
+}
+.text{
+	display: inline-block;
+	text-align:center;
+	virtical-align:middle;
+}
+.progress_text{	width:100%;}
+.progress_bar_text{	width:300px;	color: #fff; }

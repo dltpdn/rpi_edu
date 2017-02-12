@@ -1,0 +1,2 @@
+stdout : console.log 
+stdout : console.info 
