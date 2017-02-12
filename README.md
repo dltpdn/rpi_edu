@@ -1,13 +1,17 @@
-#Raspberry Pi education page
-Welcome to the rpi_edu wiki!
-rpi_edu wiki에 오신것을 환영합니다.
+#Welcome to the Raspberry Pi Educations.
+RaspberryPi Prototyping 교육에 오신것을 환영합니다.
 
 안녕하세요? 이세우입니다.
-이 사이트는 제가 라즈베리파이를 가지고 스스로 프로토타이핑을 할 수 있는 교육을 하는데 사용하고 있습니다.
-즐겁고 유익한 교육이 되기를 바랍니다.
+
+이 사이트는 라즈베리파이를 이용해서 스스로 프로토타이핑을 할 수 있는 교육을 하는데 사용하고 있습니다.
+
+교육 중이나 교육 이후에도 지속적으로 수정하며, 별다른 이유없이 사라지지 않습니다.
+
+즐겁고 유익한 교육이 되기를 바라며, 교육 중 해소하지 못한 질문이나 그 밖에 이유로 연락이 필요할 경우 아래의 연락처로 접촉해 주시기 바랍니다. 
+
 * Contact
 	* E-mail : dltpdn@gmail.com
-	* Blog : (http://blog.xcoda.net)
+	* Blog : http://blog.xcoda.net
 
 ## 수업에 필요한  S/W  다운로드 Links
 * [Rasbian OS image file](https://www.raspberrypi.org/downloads/raspbian/)
