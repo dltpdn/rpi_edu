@@ -8,7 +8,7 @@ RaspberryPi Prototyping 교육에 오신것을 환영합니다.
 교육 중이나 교육 이후에도 지속적으로 수정하며, 별다른 이유없이 사라지지 않습니다.
 
 즐겁고 유익한 교육이 되기를 바라며, 교육 중 해소하지 못한 질문이나 그 밖에 이유로 연락이 필요할 경우 아래의 연락처로 접촉해 주시기 바랍니다. 
-
+* [강사 소개](https://drive.google.com/file/d/0B3FcLTiIcKwOZExsSEg4QnpRcWs/view?usp=sharing) 
 * Contact
 	* E-mail : dltpdn@gmail.com
 	* Blog : http://blog.xcoda.net
