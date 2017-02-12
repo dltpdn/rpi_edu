@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" >
+#img_wrap{
+	width : 320px;
+	height : 240px;
+	border: 1px solid #000;
+}
+img:fullscreen{
+	width:100%;
+	height:100%;
+}
+img:-webkit-full-screen{
+	width:100%;
+	height:100%;
+}
+img:-moz-full-screen{
+	width:100%;
+	height:100%;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+window.onload = function(){
+	var img = document.querySelector('#img');
+	var btn_start = document.querySelector('#btn_start');
+	var btn_stop = document.querySelector('#btn_stop');
+	var b64Prefix = "data:image/png;base64,";
+	var rate = 1000/10;
+	
+ 	var socket = null;
+ 	var running = true;
+ 	var timer;
+ 	btn_stop.onclick = function(){
+ 		clearInterval(timer);
+ 	}
+ 	btn_start.onclick = function(){
+ 	    timer = setInterval(function(){
+ 	 	    var xhr = new XMLHttpRequest();
+ 	 	    xhr.open('GET', '/cctv')
+ 	 	    xhr.onreadystatechange = function(){
+ 				if(xhr.readyState == 4){
+ 					///console.log(xhr.responseText);
+ 					img.src = b64Prefix +xhr.responseText;
+ 				} 
+ 	 	    }
+ 		    xhr.send();
+ 	    }, rate);
+ 	}
+ 	img.onclick = function(){
+ 		if(img.requestFullscreen){
+			img.requestFullscreen();
+		}else if(img.mozRequestFullScreen){
+			img.mozRequestFullScreen()
+		}else if(img.webkitRequestFullscreen){
+			img.webkitRequestFullscreen();
+		}
+ 	}
+}
+</script>
+</head>
+<body>
+
+<button id="btn_start">start</button><button id="btn_stop">stop</button><br/>
+<div id="img_wrap">
+	<img src="" id="img" />
+</div>
+
+
+</body>
+</html>

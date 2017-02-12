@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	var btn_led_on = document.querySelector('#btn_led_on');
+	var btn_led_off = document.querySelector('#btn_led_off');
+	var status = document.querySelector('#status');
+	
+	btn_led_on.onclick= function(){
+		 var url = '/operate/led?val=on';
+		 sendAjax(url, function(res){
+			 if(res ==='OK'){
+				 status.textContent = 'LED On';
+			 }
+		 });
+	}
+	btn_led_off.onclick= function(){
+		 var url = '/operate/led?val=off';
+		 sendAjax(url, function(res){
+			 if(res ==='OK'){
+				 status.textContent = 'LED Off';
+			 }
+		 });
+	}
+	
+	function sendAjax(url, fn){
+		xhr =new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+		//	console.log(xhr.readyState)
+			if(xhr.readyState == 4){
+				console.log(xhr.responseText)
+				status.textContent = xhr.responseText;			
+				if(fn){
+					fn(xhr.responseText);
+				}
+			}
+		}
+		xhr.open('GET', url);
+		xhr.send();  
+	}
+}
+</script>
+</head>
+<body>
+	<h1>Web Iot Remote Control</h1>
+	<p>Led - GPIO 18</p>
+	<button id="btn_led_on">Led On</button>
+	<button id="btn_led_off">Led Off</button><br/>
+	<div id="status"></div>
+</body>
+</html>
