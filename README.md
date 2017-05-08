@@ -16,7 +16,7 @@ RaspberryPi Prototyping 교육에 오신것을 환영합니다.
 ## 수업에 필요한  S/W  다운로드 Links
 * [Rasbian OS image file](https://www.raspberrypi.org/downloads/raspbian/)
 * Disk Imager
- * [Etcher Image Flasher](https://etcher.io/)
+ 	* [Etcher Image Flasher](https://etcher.io/)
  * [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
 * [USB-TTL Convertor PL2303HX Driver](http://prolificusa.com/portfolio/pl2303hx-rev-d-usb-to-serial-bridge-controller/)
 * [Putty](http://www.putty.org/)
