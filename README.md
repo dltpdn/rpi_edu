@@ -13,6 +13,11 @@ RaspberryPi Prototyping 교육에 오신것을 환영합니다.
 	* E-mail : dltpdn@gmail.com
 	* Blog : http://blog.xcoda.net
 
+## 수업에 활용한 교재파일(Slideshare)
+* RaspberryPi with GPIO : https://www.slideshare.net/dltpdn/raspberrypi-gpio-with-python
+* Python Basic : https://www.slideshare.net/secret/cNAvOSPc6QI8NO
+* Python Web : https://www.slideshare.net/secret/22RAQLiA9GgyU3
+
 ## 수업에 필요한  S/W  다운로드 Links
 * [Rasbian OS image file](https://www.raspberrypi.org/downloads/raspbian/)
 * Disk Imager
