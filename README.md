@@ -40,6 +40,7 @@ RaspberryPi Prototyping 교육에 오신것을 환영합니다.
 * [OpenCV](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.2.0/opencv-3.2.0-vc14.exe/download)
 
 ## Wiki Pages
+* [부품 구매]()
 * [The Parts list(부품목록)](https://github.com/dltpdn/rpi_edu/wiki/Parts-List)
 * [LE Adv Command](https://github.com/dltpdn/rpi_edu/wiki/LE-Adv-Command)
 * [MJPG Streamer 설치 명령](https://github.com/dltpdn/rpi_edu/wiki/MJPG-Streamer-%EC%84%A4%EC%B9%98-%EB%AA%85%EB%A0%B9)
