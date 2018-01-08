@@ -24,6 +24,7 @@ RaspberryPi Prototyping 교육에 오신것을 환영합니다.
  	* [Etcher Image Flasher](https://etcher.io/)
  	* [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
 * [USB-TTL Convertor PL2303HX Driver](http://prolificusa.com/portfolio/pl2303hx-rev-d-usb-to-serial-bridge-controller/)
+* [config.txt 참조링크](https://elinux.org/index.php?title=RPiconfig)
 * [Putty](http://www.putty.org/)
 * [WinSCP](https://winscp.net/eng/download.php)
 * [VNC Viewer](https://www.realvnc.com/download/viewer/)
