@@ -6,6 +6,7 @@ var pngparse = require('pngparse');
 
 wpi.setup('wpi');
 
+var icon_path = "./image/";
 var pin1 = 8;
 var pin2 = 9;
 var pin3 = 7;
@@ -40,7 +41,7 @@ var forecast = new Forecast({
 var oled = new oled(opts);
 var weatherTime = 'cloudy';
 var temperature = '100';
-var weatherIcon = 'home/pi/weather/icon/cloud.png';
+var weatherIcon = 'cloud.png';
 
 var decode_weather = function(weatherTime){
 	var textWeather = ['clear', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy'];
@@ -75,19 +76,19 @@ var decode_weather = function(weatherTime){
 
 var icon_weather = function(weatherTime){
 	if(weatherTime == 'clear')
-		return '/home/pi/weather/icon/clear.png';
+		return 'clear.png';
 	if(weatherTime == 'cloudy')
-		return '/home/pi/weather/icon/cloud.png';
+		return 'cloud.png';
 	if(weatherTime == 'rain')
-		return '/home/pi/weather/icon/rain.png';
+		return 'rain.png';
 	if(weatherTime == 'snow')
-		return '/home/pi/weather/icon/snow.png';
+		return 'snow.png';
 	if(weatherTime == 'sleet')
-		return '/home/pi/weather/icon/sleet.png';
+		return 'sleet.png';
 	if(weatherTime == 'wind')
-		return '/home/pi/weather/icon/wind.png';
+		return 'wind.png';
 	if(weatherTime == 'fog')
-		return '/home/pi/weather/icon/fog.png';
+		return 'fog.png';
 }; 
 
 function updateWeather(){
@@ -99,7 +100,7 @@ function updateWeather(){
 			temperature = parseInt(Math.ceil(weather.currently.temperature)) + 'c\'';
 			weatherIcon = icon_weather(weatherTime);
 		
-			pngparse.parseFile(weatherIcon, function(err, image){
+			pngparse.parseFile(icon_path + weatherIcon, function(err, image){
 				oled.drawBitmap(image.data);
 				oled.setCursor(65,3);
 				oled.writeString(font, 1, weatherTime, 1, true);
