@@ -178,7 +178,7 @@ setInterval(function(){
 oled.begin(function(){
 	oled.clearDisplay();
 
-	var tmp = fs.readFileSync('/home/pi/weather/location', 'utf8');
+	var tmp = fs.readFileSync(__dirname + 'location', 'utf8');
 	latitude = tmp.split(',')[0];
 	longitude = tmp.split(',')[1];
 	
