@@ -50,7 +50,7 @@ var longitude;
 var address = 'none';
 var ip = 'none';
 var news= [];
-var status = false;
+var status = true;
 
 var decode_weather = function(data){
 	var textWeather = ['clear', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy'];
@@ -85,19 +85,19 @@ var decode_weather = function(data){
 
 var icon_weather = function(data){
 	if(data == 'clear')
-		return '/home/pi/weather/icon/clear.png';
+		return 'clear.png';
 	if(data == 'cloudy')
-		return '/home/pi/weather/icon/cloud.png';
+		return 'cloud.png';
 	if(data == 'rain')
-		return '/home/pi/weather/icon/rain.png';
+		return 'rain.png';
 	if(data == 'snow')
-		return '/home/pi/weather/icon/snow.png';
+		return 'snow.png';
 	if(data == 'sleet')
-		return '/home/pi/weather/icon/sleet.png';
+		return 'sleet.png';
 	if(data == 'wind')
-		return '/home/pi/weather/icon/wind.png';
+		return 'wind.png';
 	if(data == 'fog')
-		return '/home/pi/weather/icon/fog.png';
+		return 'fog.png';
 }; 
 
 // 정해진 위도 경도로 날씨, 온도 가져오기
