@@ -178,7 +178,7 @@ setInterval(function(){
 oled.begin(function(){
 	oled.clearDisplay();
 
-	var tmp = fs.readFileSync(__dirname + 'location', 'utf8');
+	var tmp = fs.readFileSync(__dirname + '/location', 'utf8');
 	latitude = tmp.split(',')[0];
 	longitude = tmp.split(',')[1];
 	
@@ -282,7 +282,7 @@ io.on('connection', function(socket){
 			updateNews();
 		}
 		
-		fs.writeFileSync(__dirname + 'location', latitude +','+longitude);
+		fs.writeFileSync(__dirname + '/location', latitude +','+longitude);
 	});
 
 	socket.on('disconnect', function(){
