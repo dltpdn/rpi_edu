@@ -11,7 +11,7 @@ var rsj = require('rsj');
 var pin1 = 8;
 var pin2 = 9;
 var pin3 = 7;
-
+var icon_path = "./image/";
 wpi.setup('wpi');
 
 wpi.pinMode(pin1, wpi.OUTPUT);
@@ -210,7 +210,7 @@ oled.begin(function(){
 			// 10초에 한번 % 는 나누기 연산
 			if(date.getSeconds() % 10 == 0){
 				if(status == true){
-					pngparse.parseFile(weatherIcon, function(err, image){
+					pngparse.parseFile(icon_path + weatherIcon, function(err, image){
 						oled.clearDisplay();
 						if(!err){
 							oled.drawBitmap(image.data);
