@@ -282,7 +282,7 @@ io.on('connection', function(socket){
 			updateNews();
 		}
 		
-		fs.writeFileSync('./location', latitude +','+longitude);
+		fs.writeFileSync(__dirname + 'location', latitude +','+longitude);
 	});
 
 	socket.on('disconnect', function(){
