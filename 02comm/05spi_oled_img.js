@@ -14,11 +14,11 @@ var oled = new oled(opts);
 oled.begin(function(){
 	oled.clearDisplay();
 	
-	pngparse.parseFile('./lear.png', function(err, image){
+	pngparse.parseFile('./clear.png', function(err, image){
 		oled.drawBitmap(image.data);
 		
-		oled.setCursor(100,100);
-		oled.writeString(font, 1, 'hello', 1, true);
+		oled.setCursor(70,10);
+		oled.writeString(font, 1, 'clear', 1, true);
 	});	
 
 });
