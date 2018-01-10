@@ -1,0 +1,102 @@
+<html>
+<head>
+	<title>Weather Infomation</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(function(){
+			var socket = io();
+
+			// 정보 갱신
+			socket.on('info', function(data){
+				$('#weather').text(data.weather);				
+				$('#temperature').text(data.temperature);
+				$('#humidity').text(data.humidity);				
+				$('#address').text(data.address);
+				$('#location').text('('+data.location+')');
+		  	
+				$('#news ul').empty();
+				
+				data.news.forEach(function(item){
+					$('<li>').append($('<a>').attr({'href':item.link, 'target':'_blank'}).text(item.title)).prependTo('#news ul');
+				});
+			});
+
+			// Change 버튼 클릭 시, 이벤트
+			$('#change_location').click(function(){
+				var data = $('input:text').val().replace(/\s/g, "");
+
+				if(data.indexOf(',') < 0){
+					alert('위도,경도의  형태로 입력하세요');
+					return;
+				}
+						
+				var latitude = data.split(',')[0];
+				var longitude = data.split(',')[1];
+				
+				if(isNaN(latitude) != false || isNaN(longitude) != false){
+					alert('위도,경도의 형태로 입력하세요');
+					return;		
+				}
+				
+				var result = confirm('('+latitude + ',' + longitude + ') 으로 변경하시겠습니까?' );
+        
+        		if(result)
+					socket.emit('change_location', {latitude:Number(latitude), longitude:Number(longitude)});
+				
+				$('input:text').val('');	
+			});
+			
+			// Reset 버튼 클릭 시, 이벤트
+			$('#init_location').click(function(){
+				// 서울특별시 명동
+				var latitude = 37.566535;
+				var longitude = 126.97796919999996;
+				
+				var result = confirm('('+latitude + ',' + longitude + ') 으로 변경하시겠습니까?' );
+        
+        if(result)
+					socket.emit('change_location', {latitude:latitude, longitude:longitude});
+			});
+		});
+	</script>
+	<style>
+		body{color:#555555;background:#efefef;},
+	</style>
+</head>
+<body>
+	<h3><span class='fa fa-music'> Weather Infomation</span></h3>
+	<b>Change Location</b><br>
+	<input type='text' /><i> (입력 형식: 위도,경도)</i><br>
+	<button id='change_location' title='Change'><b>Change</b></button>
+	<button id='init_location' title='Reset'><b>Reset</b></button>
+	<br><br>
+	<table>
+		<tr>
+			<td><b>Weather: </b></td>			
+			<td><span id='weather'></span></td>
+		</tr>
+		<tr>
+			<td><b>Temperature: </b></td>
+			<td><span id='temperature'></span></td>
+		</tr>
+		<tr>
+			<td><b>Humidity: </b></td>
+			<td><span id='humidity'></span></td>
+		</tr>
+		<tr>
+			<td rowspan="2"><b>Address: </b></td>
+			<td><span id='address'></span></td>
+		</tr>		
+		<tr>
+			<td><span id='location'></span></td>
+		</tr>
+	</table>
+	<h3><span class='fa fa-newspaper-o'> NEWS</span> </h3>
+	<section id='news'>
+	<ul></ul>
+	</section>
+</body>
+</html>

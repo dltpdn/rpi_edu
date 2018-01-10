@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>Hello Pi</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(function(){
+			var socket = io();
+		
+			//선택한 USER를 저장할 변수
+			var me
+
+			//받은 메시지 추가
+			socket.on('msg', function(data){
+				$('#msgs').append($('<p>').text('Receive: ' + data.msg));
+			});
+
+			//send 버튼 클릭시, 이벤트
+			$('#send').click(function(){
+				var msg = $('input:text').val();
+				$('#msgs').append($('<p>').text('Send: ' + msg));
+				socket.emit('msg', {me:me, msg:msg});
+				$('input:text').val('');
+			});
+
+			//USER 선택
+			$('input:radio[name=user_select]').change(function(){
+				
+				//선택한 USER를 me 변수에 저장, unicast.js에 전송
+				me = $(this).val();
+				socket.emit('user', me);
+
+				//UserName에 보이도록 함
+				$('#me').text(me);
+			});
+		});
+	</script>
+</head>
+<body>
+	UserName: <span id='me'></span><br>
+	User1<input type='radio' name='user_select' value='user1' />
+	User2<input type='radio' name='user_select' value='user2' />
+
+	<input type ='text' /><button id = 'send'>Send</button>
+	<br><br><br>
+
+	<i>	=== Message === </i>
+	
+	<div id='msgs' />
+</body>
+</html>

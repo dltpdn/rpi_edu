@@ -1,0 +1,19 @@
+<html>
+  <head>
+	<title>Hello Pi</title>
+	  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	  <script src="/socket.io/socket.io.js"></script>
+	  <script>
+		  $(function(){
+			  var socket = io();
+			
+				socket.on('msg', function(data){
+				$('#msg').text(data);
+				});
+			});
+		</script>
+	</head>
+	<body>
+	  <div id='msg' />
+	</body>
+</html>
