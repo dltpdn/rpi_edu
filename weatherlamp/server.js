@@ -263,7 +263,7 @@ app.get ('/', function(req, res){
 });
 
 // 서버 구동, http://IP주소
-server.listen(80, function(){
+server.listen(8080, function(){
 	console.log('server is running');
 });
 
