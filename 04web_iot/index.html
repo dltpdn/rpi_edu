@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(function(){
+			var socket = io();
+			
+			socket.on('info', function(data){
+				$('#distance').text(data.distance + ' cm');	
+				$('#temperature').text(data.temperature + ' °C');	
+				$('#humidity').text(data.humidity + ' %');	
+			});
+
+			$('#led_on').click(function(){
+        socket.emit('setLed', 1);
+			});
+			
+			$('#led_off').click(function(){
+        socket.emit('setLed', 0);
+			});
+
+			var pwmled_val = 0;
+			$('#pwm_led').mousemove(function(){
+				if(pwmled_val == $(this).val())
+					return;
+      	
+				socket.emit('setRangeLed', $(this).val());
+				pwmled_val = $(this).val();
+    	});
+
+			$('#msg').keypress(function(event){
+        if (event.keyCode == 13){
+            socket.emit('setText', $('#msg').val());
+        }
+	    });	
+		});
+	</script>
+</head>
+<body>
+
+LED Toggle
+<button id='led_on'>ON</button>
+<button id='led_off'>OFF</button><br>
+PWM LED
+<input id='pwm_led' type="range" min="0" max="100" value ="0" /><br>
+Distance: <span id='distance'></span><br>
+Temperature: <span id='temperature'></span><br>
+Humidity: <span id='humidity'></span><br>
+Text: <input id='msg' type='text' value="입력하고 엔터치세요." onfocus="this.value=''"/><br>
+</body>
+</html>
+
