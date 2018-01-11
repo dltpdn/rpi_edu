@@ -8,7 +8,7 @@ wpi.setup('gpio');
 wpi.pinMode(pin, wpi.PWM_OUTPUT);
 wpi.pwmSetMode(wpi.PWM_MODE_MS);
 wpi.pwmSetClock(1920);
-wpi.pwmSetRange(100);
+wpi.pwmSetRange(200); //19.2M / 1920 / 200 = 50Hz
 
 rl.setPrompt("1:-90, 2:0, 3: +90 > ");
 

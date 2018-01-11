@@ -5,7 +5,7 @@ wpi.wiringPiSetupGpio()
 wpi.pinMode(pin, wpi.PWM_OUTPUT)
 wpi.pwmSetMode(wpi.PWM_MODE_MS)
 wpi.pwmSetClock(1920)
-wpi.pwmSetRange(100)
+wpi.pwmSetRange(200)
 
 while True:
 	answer = raw_input("1:-90, 2:0, 3: +90 > ")
