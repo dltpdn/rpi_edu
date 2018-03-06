@@ -1,3 +1,4 @@
+# run with sudo
 import wiringpi as wpi
 pin = 18
 
