@@ -14,4 +14,4 @@ while True:
 	elif answer == '2':
 		wpi.pwmWrite(pin, 75)	# 75 * 0.02ms = 1.5ms
 	else:
-		wpi.pwmWrite(pin, 125)	# 125 * 0.02ms = 2.5ms
+		wpi.pwmWrite(pin, 125)	# 125 * 0.02ms = 2.5ms 
