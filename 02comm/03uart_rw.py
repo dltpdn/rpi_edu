@@ -9,8 +9,8 @@ class ReadThread(threading.Thread):
         while self.flag:
             line = self.readline()
             if len(line) > 0 :
-                print "recv:" +line
-        print "read thread died."
+                print("recv:" +line)
+        print("read thread died.")
         
     
     def readline(self):
@@ -25,14 +25,14 @@ try:
     if port.isOpen() :
         t = ReadThread()
         t.start()
-        print 'serial is ready.'
+        print('serial is ready.')
         while True:
-            line = raw_input(">")
+            line = input(">")
             if line == 'exit':
                 t.flag = False
                 break
-            print line
+            print(line)
             port.write(line + '\r\n')
-        print 'bye'
+        print('bye')
 finally:
     port.close()

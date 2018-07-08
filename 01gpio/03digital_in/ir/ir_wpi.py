@@ -9,4 +9,4 @@ while True:
     read = wpi.digitalRead(pin)
     if(read != val):
         val = read;
-        print val == 0 and "no IR" or "IR detected"
+        print(val == 0 and "no IR" or "IR detected")

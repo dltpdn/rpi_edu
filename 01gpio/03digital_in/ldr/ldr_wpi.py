@@ -9,5 +9,5 @@ lastVal = -1
 while True:
     val = wpi.digitalRead(pin)
     if val != lastVal:
-        print val ==0 and 'dark' or 'light'
+        print(val ==0 and 'dark' or 'light')
         lastVal = val

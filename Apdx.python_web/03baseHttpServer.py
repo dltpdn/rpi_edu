@@ -1,8 +1,8 @@
-import BaseHTTPServer
-import SocketServer
+import http.server
+import socketserver
 
 
-class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class MyHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-Type', 'text/html')
@@ -12,7 +12,7 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
 
 PORT = 8080
-httpd = SocketServer.TCPServer(("", PORT), MyHandler)
+httpd = socketserver.TCPServer(("", PORT), MyHandler)
 
-print "server on%d" %PORT
+print("server on%d" %PORT)
 httpd.serve_forever()

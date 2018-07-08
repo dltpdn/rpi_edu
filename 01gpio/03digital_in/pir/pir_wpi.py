@@ -9,4 +9,4 @@ while True:
     read = wpi.digitalRead(pin)
     if(read != val):
         val = read;
-        print val == 0 and "no intruder" or "intruder detected"
+        print(val == 0 and "no intruder" or "intruder detected")

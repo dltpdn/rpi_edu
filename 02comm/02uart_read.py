@@ -14,8 +14,8 @@ def readline():
     
 try:
     if port.isOpen() :
-        print 'serial is ready.'
+        print('serial is ready.')
         while True:
-            print "recv:" + readline() 
+            print("recv:" + readline()) 
 finally:
     port.close()

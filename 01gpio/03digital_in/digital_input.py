@@ -6,6 +6,6 @@ try:
     GPIO.setup(pin, GPIO.IN)
     
     while True:
-        print GPIO.input(pin)
+        print(GPIO.input(pin))
 finally:
     GPIO.cleanup()

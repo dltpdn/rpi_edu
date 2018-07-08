@@ -12,8 +12,8 @@ def plus(a, b):
         raise MyException('negative parameter')
     
 try:
-    print plus(1,2)
-    print plus(-1,-2)
+    print(plus(1,2))
+    print(plus(-1,-2))
 except Exception as e:
-    print e.msg
-    print sys.exc_info()
+    print(e.msg)
+    print(sys.exc_info())

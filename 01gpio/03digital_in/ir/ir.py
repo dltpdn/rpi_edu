@@ -11,8 +11,8 @@ try:
         read = GPIO.input(pin)
         if read != val:
             val = read
-            print  val == 0 and 'no IR' or 'IR detected'
+            print(val == 0 and 'no IR' or 'IR detected')
         #time.sleep(0.1)
 finally:
-    print "clean up."
+    print("clean up.")
     GPIO.cleanup()

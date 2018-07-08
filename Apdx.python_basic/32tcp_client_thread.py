@@ -6,7 +6,7 @@ running = True
 def recv():
     while running:
         read = socket.recv(1024)
-        print 'client:', read
+        print('client:', read)
 
 try:
     socket = socket(AF_INET, SOCK_STREAM)
@@ -16,7 +16,7 @@ try:
     socket.send('Hi! This is a client.')
     
     while running:
-        str = raw_input(">")
+        str = input(">")
         if str == "exit":
             break
         socket.send(str+"\n")

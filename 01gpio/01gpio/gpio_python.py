@@ -14,5 +14,5 @@ try:
         GPIO.output(led_pin, False)
         time.sleep(0.5)
 finally:
-    print 'clean up'
+    print('clean up')
     GPIO.cleanup()

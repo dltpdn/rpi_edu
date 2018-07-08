@@ -9,7 +9,7 @@ try:
         read = GPIO.input(pin)
         if read != val:
             val = read
-            print 'dark' if val == 0 else 'light'
+            print('dark' if val == 0 else 'light')
 finally:
-    print "clean up."
+    print("clean up.")
     GPIO.cleanup()

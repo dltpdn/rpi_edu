@@ -11,11 +11,11 @@ def readNumber():
     return number
 
 while True:
-    var = input("0=Led Off, 1=Led On, 3=Get Count > ")
+    var = eval(input("0=Led Off, 1=Led On, 3=Get Count > "))
     if var < 2:
         writeNumber(var)
-        print "Led ", var
+        print("Led ", var)
         continue
     else:
         number = readNumber()
-        print "Arduino LED Count", number
+        print("Arduino LED Count", number)

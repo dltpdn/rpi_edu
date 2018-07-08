@@ -16,17 +16,17 @@ def main():
 @app.route('/monitor')
 def monitoring():
     try:
-        print '/monitor'
+        print('/monitor')
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin_dht11)
         obj = {'humi' : humidity, 'temp' : temperature}
         return json.dumps(obj)
     except Exception as e:
-        print 'err', e
+        print('err', e)
 
 
 if __name__ == '__main__':
     try:
         app.run(host='0.0.0.0')
     finally:
-        print 'cleaning up'
+        print('cleaning up')
         GPIO.cleanup()

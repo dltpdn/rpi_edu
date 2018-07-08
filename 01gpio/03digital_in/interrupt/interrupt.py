@@ -10,7 +10,7 @@ GPIO.setup(18, GPIO.IN)
 #     print('Edge detected on channel', channel)
 
 def my_callback(channel):
-    print 'Edge detected on channel %s state %s'% (channel, GPIO.input(channel)) 
+    print('Edge detected on channel %s state %s'% (channel, GPIO.input(channel))) 
 
 GPIO.add_event_detect(18, GPIO.BOTH, callback=my_callback)
 while True:

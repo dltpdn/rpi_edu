@@ -7,8 +7,8 @@ class MyThread(threading.Thread):
         
     def run(self):
         for i in range(self.cnt):
-            print 'id %s --> %s' %(self.getName(), i)
-        print 'Thread %s is dead.' % self.getName()
+            print('id %s --> %s' %(self.getName(), i))
+        print('Thread %s is dead.' % self.getName())
 
     
 for i in range(5):
@@ -17,4 +17,4 @@ for i in range(5):
     th.join()
     
 
-print 'all threads died, main exiting.'
+print('all threads died, main exiting.')

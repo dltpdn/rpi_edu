@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/user/<id>', methods=['GET'])
 def show_user(id):
-    print id
+    print(id)
     if id == "abc":
         return 'User id is %s, name is %s' %(id, 'Lee')
     elif id == "xyz":

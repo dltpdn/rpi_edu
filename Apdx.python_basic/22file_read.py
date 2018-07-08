@@ -5,6 +5,6 @@ try:
     lines = f.read()
     f.close()
     words = lines.splitlines()
-    print words
+    print(words)
 except IOError:
-    print 'Can not open the file.'
+    print('Can not open the file.')

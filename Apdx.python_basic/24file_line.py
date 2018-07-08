@@ -8,6 +8,6 @@ try:
         line = f.readline()
         if line == '':
             break
-        print "%d : %s" %(cnt, line),
+        print("%d : %s" %(cnt, line), end=' ')
 except IOError:
-    print 'Can not open the file'
+    print('Can not open the file')

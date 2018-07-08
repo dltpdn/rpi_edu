@@ -7,8 +7,8 @@ try:
     GPIO.setup(fan_pin, GPIO.OUT)
     
     while True:
-        val = input("1:on, 0:off > ")
+        val = eval(input("1:on, 0:off > "))
         GPIO.output(fan_pin, val)
 finally:
-    print 'clean up'
+    print('clean up')
     GPIO.cleanup()

@@ -24,10 +24,10 @@ status = { "PIR": -1, "SND": False, "PHT": False, 'MODE':0}
 def main():
     global status
     delay = 3
-    print 'Mission-1 started.(delay time: %d)' %delay
+    print('Mission-1 started.(delay time: %d)' %delay)
     for x in range(delay, 0, -1):
         time.sleep(1)
-        print 'Waiting.. ', x
+        print('Waiting.. ', x)
     try:    
         setup()
         while True:
@@ -74,7 +74,7 @@ def get_distance():
    # distance = travel_time / 58
     distance = travel_time * 17150
     distance = round(distance, 2)
-    print 'Distance:%dcm' %distance
+    print('Distance:%dcm' %distance)
     return distance
     
 def scan_sonic(status):
@@ -129,9 +129,9 @@ def check_pir(status):
     if status['PIR'] != read: 
         status['PIR'] = read
         if status['PIR']== 0:
-            print time.strftime("%Y%m%d-%H%M%S"), "No intruder"
+            print(time.strftime("%Y%m%d-%H%M%S"), "No intruder")
         elif status['PIR'] == 1:
-            print time.strftime("%Y%m%d-%H%M%S"), "Intruder dectected"
+            print(time.strftime("%Y%m%d-%H%M%S"), "Intruder dectected")
     return status['PIR']      
 
 

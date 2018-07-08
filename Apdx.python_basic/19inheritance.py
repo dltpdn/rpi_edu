@@ -6,9 +6,9 @@ class Car(object):
 
     def drive(self):
         if self.engine ==None:
-            print"can't drive caused by no engine"
+            print("can't drive caused by no engine")
         else:
-            print'driving..'
+            print('driving..')
 
 
 class SuperCar(Car):
@@ -16,7 +16,7 @@ class SuperCar(Car):
         super(SuperCar, self).__init__(engine)
         #Car.__init__(self, engine)
     def driveFast(self):
-        print'driving fast very much...'
+        print('driving fast very much...')
 
 
 car = Car(2)

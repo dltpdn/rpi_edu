@@ -19,10 +19,10 @@ def op(cmd):
     val = request.values['val']   
     if cmd == "led":
         val = request.values['val']   
-        print '/operate/', cmd, val 
+        print('/operate/', cmd, val) 
         if val == 'on':
             GPIO.output(pin_led, True)
-            print pin_led, 'on'
+            print(pin_led, 'on')
         elif val == 'off':
             GPIO.output(pin_led, False)
         return 'OK'
@@ -31,5 +31,5 @@ if __name__ == '__main__':
     try:
         app.run(host='0.0.0.0')
     finally:
-        print 'cleaning up'
+        print('cleaning up')
         GPIO.cleanup()

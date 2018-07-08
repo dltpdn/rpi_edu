@@ -2,7 +2,7 @@ from wsgiref.simple_server import  make_server
 
 
 def app(env, res):
-    print env
+    print(env)
     res_body = "<h1>Welcome to WSGI server</h1>"
 
     status = '200 OK'

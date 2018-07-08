@@ -21,13 +21,13 @@ def connect():
     send({'data': 'welcome'})
     
 def my_callback(channel):
-    print 'Edge detected on channel %s state %s'% (channel, GPIO.input(channel)) 
+    print('Edge detected on channel %s state %s'% (channel, GPIO.input(channel))) 
     val =GPIO.input(channel)
     if val == 1:
         socketio.send( {'data': '1' })
     else:
         socketio.send({'data': '0'})
-    print 'btn pressed', 0
+    print('btn pressed', 0)
 
 
 if __name__ == '__main__':
@@ -35,5 +35,5 @@ if __name__ == '__main__':
         GPIO.add_event_detect(pin_btn, GPIO.BOTH, callback=my_callback)
         socketio.run(app, host='0.0.0.0')
     finally:
-        print 'cleaning up'
+        print('cleaning up')
         GPIO.cleanup()

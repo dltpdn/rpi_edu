@@ -19,4 +19,4 @@ while True:
     GPIO.output(pin_charge, True)  #start charging
     while not GPIO.input(pin_measure):  #until recognize
         count = count + 1           #accumulate count
-    print count
+    print(count)

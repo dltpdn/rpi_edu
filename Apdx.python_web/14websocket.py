@@ -11,7 +11,7 @@ def main():
 
 @socketio.on('message')
 def handle_message(msg):
-    print 'recv:', msg
+    print('recv:', msg)
     send(msg, broadcast=True)
     
 @app.route('/notify', methods=['GET'])

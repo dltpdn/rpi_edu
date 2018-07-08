@@ -17,14 +17,14 @@ def play():
             break
         if lives_remaining ==0:
             print('You are Hung!')
-            print('The word was: ' + word)
+            print(('The word was: ' + word))
             break
 
 
 def get_guess(word):
     print_word_with_blanks(word)
-    print 'Lives Remaning:', str(lives_remaining)
-    guess = raw_input('Guess a letter or whole word?')
+    print('Lives Remaning:', str(lives_remaining))
+    guess = input('Guess a letter or whole word?')
     return guess
 
 
@@ -36,7 +36,7 @@ def print_word_with_blanks(word):
             display_word = display_word + letter
         else:
             display_word = display_word +'-'
-    print display_word #, guessed_letters, word
+    print(display_word) #, guessed_letters, word
 
 
 def process_guess(guess, word):

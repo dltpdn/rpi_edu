@@ -24,7 +24,7 @@ try:
         travel_time = end_time - start_time;
         distance = travel_time * 17160 #34321/2
         distance = round(distance, 2)
-        print 'Distance:%dcm' %distance
+        print('Distance:%dcm' %distance)
 finally:
-    print 'Clean up'
+    print('Clean up')
     GPIO.cleanup()                

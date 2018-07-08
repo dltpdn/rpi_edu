@@ -1,3 +1,3 @@
 
 def function1():
-    print 'this is function 1'
+    print('this is function 1')

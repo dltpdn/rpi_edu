@@ -5,7 +5,7 @@ wpi.wiringPiSetupGpio()
 wpi.pinMode(pin, wpi.INPUT)
 
 def isr():
-	print wpi.digitalRead(pin)
+	print(wpi.digitalRead(pin))
 
 wpi.wiringPiISR(pin, wpi.INT_EDGE_BOTH, isr);
 

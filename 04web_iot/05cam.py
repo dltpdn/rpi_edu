@@ -15,7 +15,7 @@ def main():
 
 @app.route('/cctv')
 def oncctv():
-    print 'cctv'
+    print('cctv')
     ret, data = cam.read()
     if ret:
         ret, png = cv2.imencode('.png', data)

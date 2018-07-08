@@ -18,4 +18,4 @@ while True:
 		end_time = time.time()
 	travel_time = end_time - start_time
 	distance = travel_time * 17160;
-	print 'Distance: %dCm '%round(distance, 2)  , travel_time
+	print('Distance: %dCm '%round(distance, 2)  , travel_time)

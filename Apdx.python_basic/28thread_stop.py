@@ -6,9 +6,9 @@ class MyThread(threading.Thread):
     def run(self):
         while True:
             if not self.live:
-                print '%s is dead.' % self.getName()
+                print('%s is dead.' % self.getName())
                 break;
-            print self.getName(), self.cnt
+            print(self.getName(), self.cnt)
             time.sleep(1)
             self.cnt = self.cnt + 1
 
@@ -21,9 +21,9 @@ th = MyThread()
 th.start()
 try:
     for i in range(10) :
-        print 'Main',  i
+        print('Main',  i)
         time.sleep(0.5)
 finally:
-    print 'Main is dead.'
+    print('Main is dead.')
     th.stop()
  
