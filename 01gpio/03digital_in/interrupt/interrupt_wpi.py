@@ -1,5 +1,6 @@
 import wiringpi as wpi
 import time
+
 pin = 18
 wpi.wiringPiSetupGpio()
 wpi.pinMode(pin, wpi.INPUT)

@@ -15,7 +15,7 @@ print("client connected : ", address)
 
 data = socket.recv(1024)
 print("received :%s" % data)
-socket.send('Good bye~')
+socket.send(b'Good bye~')
 print('sent data')
 socket.close()
 server.close()

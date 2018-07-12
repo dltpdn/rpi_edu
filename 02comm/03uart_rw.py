@@ -1,6 +1,6 @@
 import serial, threading
 
-port = serial.Serial("/dev/ttyS0", baudrate=115200, timeout=3.0)
+port = serial.Serial("/dev/serial0", baudrate=115200, timeout=3.0)
 
 class ReadThread(threading.Thread):
     flag = True
@@ -32,7 +32,7 @@ try:
                 t.flag = False
                 break
             print(line)
-            port.write(line + '\r\n')
+            port.write( (line + '\r\n').encode())
         print('bye')
 finally:
     port.close()

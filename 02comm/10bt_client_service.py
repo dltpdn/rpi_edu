@@ -16,7 +16,7 @@ for i in range(len(services)):
 
       socket=bt.BluetoothSocket( bt.RFCOMM )
       socket.connect((host, port))
-      socket.send("Hello world 2")
+      socket.send(b"Hello world 2")
       data = socket.recv(1024)
       print("recv :", data)
       socket.close()

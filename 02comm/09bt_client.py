@@ -12,7 +12,7 @@ if len(scan_list) > 0 :
     #address = "B8:27:EB:14:18:CC"
     socket.connect((address, 3)) 
     print ("connected.")
-    socket.send("Hello Bluetooth World.")
+    socket.send(b"Hello Bluetooth World.")
     print ("sent data")
     recv = socket.recv(1024)
     print(("recv data : %s" % recv))
