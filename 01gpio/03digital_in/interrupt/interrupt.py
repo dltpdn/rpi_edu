@@ -9,9 +9,10 @@ GPIO.setup(18, GPIO.IN)
 # else:
 #     print('Edge detected on channel', channel)
 
-def my_callback(channel):
+def isr(channel):
     print('Edge detected on channel %s state %s'% (channel, GPIO.input(channel))) 
 
-GPIO.add_event_detect(18, GPIO.BOTH, callback=my_callback)
+GPIO.add_event_detect(18, GPIO.BOTH, callback=isr)
+#GPIO.add_event_detect(18, GPIO.BOTH, callback=isr, bouncetime=200)
 while True:
     time.sleep(100)
