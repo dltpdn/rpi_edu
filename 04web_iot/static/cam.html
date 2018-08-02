@@ -28,7 +28,7 @@ window.onload = function(){
 	var btn_start = document.querySelector('#btn_start');
 	var btn_stop = document.querySelector('#btn_stop');
 	var b64Prefix = "data:image/png;base64,";
-	var rate = 1000/10;
+	var fps = 15;
 	
  	var socket = null;
  	var running = true;
@@ -47,7 +47,7 @@ window.onload = function(){
  				} 
  	 	    }
  		    xhr.send();
- 	    }, rate);
+ 	    }, 1000/fps);
  	}
  	img.onclick = function(){
  		if(img.requestFullscreen){
