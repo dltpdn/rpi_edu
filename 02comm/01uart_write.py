@@ -1,12 +1,12 @@
 import serial
 
-port = serial.Serial("/dev/ttyS0", baudrate=115200, timeout=3.0)
+port = serial.Serial("/dev/serial0", baudrate=115200, timeout=3.0)
 try:
     if port.isOpen():
         print('serial writer is ready.')
     
     while True:
-        line = eval(input(">"))
+        line = input(">")
         print( line)
         port.write( (line + '\r\n').encode())
 finally:

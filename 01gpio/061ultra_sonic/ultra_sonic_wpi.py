@@ -1,20 +1,20 @@
 import wiringpi as wpi, time
-pin_trig = 18
-pin_echo = 23
+PIN_TRIG = 18
+PIN_ECHO = 23
 
 wpi.wiringPiSetupGpio();
-wpi.pinMode(pin_trig, wpi.OUTPUT);
-wpi.pinMode(pin_echo, wpi.INPUT);
+wpi.pinMode(PIN_TRIG, wpi.OUTPUT);
+wpi.pinMode(PIN_ECHO, wpi.INPUT);
 
 while True:
-	wpi.digitalWrite(pin_trig, wpi.LOW)
+	wpi.digitalWrite(PIN_TRIG, wpi.LOW)
 	wpi.delay(200);
-	wpi.digitalWrite(pin_trig, wpi.HIGH)
+	wpi.digitalWrite(PIN_TRIG, wpi.HIGH)
 	wpi.delayMicroseconds(10)
-	wpi.digitalWrite(pin_trig, wpi.LOW)
-	while wpi.digitalRead(pin_echo) == 0:
+	wpi.digitalWrite(PIN_TRIG, wpi.LOW)
+	while wpi.digitalRead(PIN_ECHO) == 0:
 		start_time = time.time()
-	while wpi.digitalRead(pin_echo) == 1:
+	while wpi.digitalRead(PIN_ECHO) == 1:
 		end_time = time.time()
 	travel_time = end_time - start_time
 	distance = travel_time * 17160;

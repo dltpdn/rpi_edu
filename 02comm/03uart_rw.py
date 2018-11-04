@@ -16,9 +16,9 @@ class ReadThread(threading.Thread):
     def readline(self):
         line = ''
         while True:
-            ch = port.read()
+            ch = port.read().decode()
             line +=ch
-            if ch =='\r' or ch == '':
+            if ch =='\r' or ch=='\n' or ch == '':
                 return line
     
 try:

@@ -1,14 +1,14 @@
 import RPi.GPIO as GPIO
 
-fan_pin = 18
+PIN_FAN = 18
 
 try:
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(fan_pin, GPIO.OUT)
+    GPIO.setup(PIN_FAN, GPIO.OUT)
     
     while True:
         val = eval(input("1:on, 0:off > "))
-        GPIO.output(fan_pin, val)
+        GPIO.output(PIN_FAN, val)
 finally:
     print('clean up')
     GPIO.cleanup()

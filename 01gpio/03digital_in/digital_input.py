@@ -1,11 +1,11 @@
 import RPi.GPIO as GPIO
 
-pin = 18
+PIN_SW = 18
 try:
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin, GPIO.IN)
+    GPIO.setup(PIN_SW, GPIO.IN)
     
     while True:
-        print(GPIO.input(pin))
+        print(GPIO.input(PIN_SW))
 finally:
     GPIO.cleanup()

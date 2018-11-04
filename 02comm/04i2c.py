@@ -3,19 +3,12 @@ bus = smbus.SMBus(1)
 
 address = 0x04
 
-def writeNumber(value):
-    bus.write_byte(address, value)
-
-def readNumber():
-    number = bus.read_byte(address)
-    return number
-
 while True:
-    var = eval(input("0=Led Off, 1=Led On, 3=Get Count > "))
-    if var < 2:
-        writeNumber(var)
-        print("Led ", var)
+    value = eval(input("0=Led Off, 1=Led On, 3=Get Count > "))
+    if value < 2:
+        bus.write_byte(address, value)
+        print("Led ", value)
         continue
     else:
-        number = readNumber()
+        number = bus.read_byte(address)
         print("Arduino LED Count", number)

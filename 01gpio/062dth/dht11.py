@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
  
-pin = 18 
+PIN_DHT11 = 18 
 GPIO.setmode(GPIO.BCM)
 
 while True: 
@@ -9,17 +9,17 @@ while True:
     data2 = []
     cnt = 0 
 
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, 0)
+    GPIO.setup(PIN_DHT11, GPIO.OUT)
+    GPIO.output(PIN_DHT11, 0)
     time.sleep(0.018)
-    GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(PIN_DHT11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     while True:
         err = True
-        while(GPIO.input(pin)==0):
+        while(GPIO.input(PIN_DHT11)==0):
             pass
         old = time.time()
-        while(GPIO.input(pin) == 1 ):
+        while(GPIO.input(PIN_DHT11) == 1 ):
             err = False
             end = time.time()
             if end - old > 0.001 :

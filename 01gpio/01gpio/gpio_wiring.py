@@ -1,17 +1,19 @@
-import wiringpi
+import wiringpi as wpi
 import time
 
-pin = 18
-wiringpi.wiringPiSetupGpio()
-wiringpi.pinMode(pin, wiringpi.OUTPUT)
+PIN_LED = 18
+wpi.wiringPiSetupGpio()
+wpi.pinMode(PIN_LED, wpi.OUTPUT)
 
-for i in range(0,5):
-    wiringpi.digitalWrite(pin, True)
-    print(( 'pin %s ON'%pin))
+for i in range(5):
+    wpi.digitalWrite(PIN_LED, True)
+    print( 'pin %s ON'%PIN_LED)
     time.sleep(1)
-    wiringpi.digitalWrite(pin, False)
-    print(( 'pin %s Off'%pin))
+    wpi.digitalWrite(PIN_LED, False)
+    print( 'pin %s Off'%PIN_LED)
     time.sleep(1)
+wpi.digitalWrite(PIN_LED, False)
+wpi.pinMode(PIN_LED, wpi.INPUT)
 
 
 

@@ -1,14 +1,14 @@
 import RPi.GPIO as GPIO
 import time
 
+PIN = 18
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIN, GPIO.IN)
+val = -1
 
 try:
-    pin = 18
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin, GPIO.IN)
-    val = -1
     while True:
-        read = GPIO.input(pin)
+        read = GPIO.input(PIN)
         if read != val:
             val = read
             print(val == 0 and 'no IR' or 'IR detected')

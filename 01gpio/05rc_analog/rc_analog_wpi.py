@@ -1,18 +1,19 @@
 import wiringpi as wpi
-pin_charge = 18
-pin_measure = 23
+PIN_CHARGE = 18
+PIN_MEASURE = 23
 
 wpi.wiringSetupGpio();
 while True:
-	wpi.pinMode(pin_charge, wpi.INPUT)
-	wpi.pinMode(pin_measure, wpi.OUTPUT)
-	wpi.digitalWrite(pin_measure, wpi.LOW)
+	wpi.pinMode(PIN_CHARGE, wpi.INPUT)
+	wpi.pinMode(PIN_MEASURE, wpi.OUTPUT)
+	wpi.digitalWrite(PIN_MEASURE, wpi.LOW)
 	wpi.delay(100)
-	wpi.pinMode(pin_charge, wpi.OUTPUT)
-	wpi.pinMode(pin_measure, wpi.INPUT)
-	wpi.digitalWrite(pin_charge, wpi.HIGH)
+	
+	wpi.pinMode(PIN_CHARGE, wpi.OUTPUT)
+	wpi.pinMode(PIN_MEASURE, wpi.INPUT)
+	wpi.digitalWrite(PIN_CHARGE, wpi.HIGH)
 	count = 0
-	while !wpi.digitalRead(pin_measure) :
+	
+	while not(wpi.digitalRead(PIN_MEASURE)) :
 		count+=1
-	print count
-}
+	print(count)

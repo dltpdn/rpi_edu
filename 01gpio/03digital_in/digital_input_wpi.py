@@ -1,9 +1,9 @@
 import wiringpi as wpi
 
-sw_pin = 18
+PIN_SW = 18
 
 wpi.wiringPiSetupGpio()
-wpi.pinMode(sw_pin, wpi.INPUT)
+wpi.pinMode(PIN_SW, wpi.INPUT)
 
 while True:
-    print(wpi.digitalRead(sw_pin))
+    print(wpi.digitalRead(PIN_SW))

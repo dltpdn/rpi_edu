@@ -1,9 +1,9 @@
 import wiringpi as wpi
 
-pin = 18
+PIN_LED = 18
 wpi.wiringPiSetupGpio()
-wpi.pinMode(pin, wpi.OUTPUT)
+wpi.pinMode(PIN_LED, wpi.OUTPUT)
 while True:
     val = eval(input("1:on, 0:off > "))
-    wpi.digitalWrite(pin, val)
+    wpi.digitalWrite(PIN_LED, val)
 

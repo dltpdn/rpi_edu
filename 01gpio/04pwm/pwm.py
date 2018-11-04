@@ -1,14 +1,14 @@
 import RPi.GPIO as GPIO
 import time
 
-try:
-    pin = 18
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin, GPIO.OUT)
-    
-    pwm = GPIO.PWM(pin, 100)
-    pwm.start(0)
+PIN_LED = 18
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIN_LED, GPIO.OUT)
 
+pwm = GPIO.PWM(PIN_LED, 100)
+pwm.start(0)
+
+try:
     while True:
         for i in range(0, 101):
             pwm.ChangeDutyCycle(i)

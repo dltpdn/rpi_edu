@@ -1,8 +1,8 @@
 import time
 import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
 
-pin = 18
+PIN = 18
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(pad_pin, GPIO.IN)
 
 while True:

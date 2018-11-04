@@ -1,5 +1,5 @@
 import wiringpi as wpi, time
-pin	=18
+PIN_DHT11	=18
 
 wpi.wiringPiSetupGpio()
 
@@ -7,20 +7,20 @@ while True:
 	data  = []
 	data2 = []
 	cnt = 0
-	wpi.pinMode(pin, wpi.OUTPUT)
-	wpi.digitalWrite(pin, wpi.HIGH)
-	wpi.digitalWrite(pin, wpi.LOW)
+	wpi.pinMode(PIN_DHT11, wpi.OUTPUT)
+	wpi.digitalWrite(PIN_DHT11, wpi.HIGH)
+	wpi.digitalWrite(PIN_DHT11, wpi.LOW)
 	wpi.delay(18)
-	wpi.pinMode(pin, wpi.INPUT)
-	wpi.pullUpDnControl(pin, wpi.PUD_UP)
+	wpi.pinMode(PIN_DHT11, wpi.INPUT)
+	wpi.pullUpDnControl(PIN_DHT11, wpi.PUD_UP)
 
 
 	while True:
 		err = True
-		while(wpi.digitalRead(pin)==0):
+		while(wpi.digitalRead(PIN_DHT11)==0):
 			pass
 		old = time.time()
-		while(wpi.digitalRead(pin) == 1 ):
+		while(wpi.digitalRead(PIN_DHT11) == 1 ):
 			err = False
 			end = time.time()
 			if end - old > 0.001 :

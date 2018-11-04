@@ -1,14 +1,14 @@
 import wiringpi as wpi
 import time
 
-pin = 18
+PIN_SW = 18
 wpi.wiringPiSetupGpio()
-wpi.pinMode(pin, wpi.INPUT)
+wpi.pinMode(PIN_SW, wpi.INPUT)
 
 def isr():
-	print(wpi.digitalRead(pin))
+	print(wpi.digitalRead(PIN_SW))
 
-wpi.wiringPiISR(pin, wpi.INT_EDGE_BOTH, isr);
+wpi.wiringPiISR(PIN_SW, wpi.INT_EDGE_BOTH, isr);
 
 while True:
 	time.sleep(100)

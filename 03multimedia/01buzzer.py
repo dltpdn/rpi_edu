@@ -1,15 +1,15 @@
 import wiringpi  
 from time import sleep  
-pin = 18
+PIN_BUZ = 18
 
 wiringpi.wiringPiSetupGpio()  
   
 try:
-    wiringpi.softToneCreate(pin)
+    wiringpi.softToneCreate(PIN_BUZ)
     while True:
-        wiringpi.softToneWrite(pin, 392)
+        wiringpi.softToneWrite(PIN_BUZ, 392)
         sleep(0.5)
-        wiringpi.softToneWrite(pin, 523)
+        wiringpi.softToneWrite(PIN_BUZ, 523)
         sleep(0.5)
 finally:
-    wiringpi.pinMode(pin, 0)
+    wiringpi.pinMode(PIN_BUZ, 0)

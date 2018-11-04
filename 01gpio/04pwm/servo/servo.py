@@ -1,11 +1,11 @@
 import RPi.GPIO as GPIO
 import time
 
-pin = 18
+PIN_SERVO = 18
 try:
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin, GPIO.OUT)
-    pwm = GPIO.PWM(pin,50)  # 50Hz, 1Period = 20ms
+    GPIO.setup(PIN_SERVO, GPIO.OUT)
+    pwm = GPIO.PWM(PIN_SERVO,50)  # 50Hz, 1Period = 20ms
     pwm.start(5)
     while True:
         val = input('1:-90, 2:0, 3:+90 > ')
