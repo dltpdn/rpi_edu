@@ -1,6 +1,6 @@
 import serial
 
-port = serial.Serial("/dev/serial0", baudrate=115200, timeout=3.0)
+port = serial.Serial("/dev/serial0", baudrate=9600, timeout=3.0)
 
 
 def readline():
@@ -8,7 +8,7 @@ def readline():
     while True:
         ch = port.read().decode()
         line +=ch
-        if ch =='\n' or ch == 'r' or ch == '':
+        if ch =='\n' or ch == '\r' or ch == '':
             if len(line) > 0 :
                 return line
     
