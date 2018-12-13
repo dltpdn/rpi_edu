@@ -15,7 +15,7 @@ I am Lee Sewoo, the lecturer of this course.
 
 I created this repository for my training course.
 
-This repository can be changed during you are in this course or completed, and it will not be destroyed by me.
+This repository can be changed while you are in this course or completed, and it will not be destroyed by me.
 
 
 See the links below and the wiki pages to get program files that are not available here.
