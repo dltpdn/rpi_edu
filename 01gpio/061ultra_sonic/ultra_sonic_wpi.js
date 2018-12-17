@@ -1,4 +1,4 @@
-var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi');
 var pin_trig = 18;
 var pin_echo = 23;
 var start_time = end_time = travel_time =  distance = 0;

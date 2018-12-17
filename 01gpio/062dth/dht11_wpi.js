@@ -1,10 +1,11 @@
-var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi');
 var pin = 18
 
 wpi.wiringPiSetupGpio();
 var prev = 0;
 while (true) {
-	var data = data2 = [];
+	var data = [];
+	var data2 = [];
 	var cnt = 0;
 	wpi.pinMode(pin, wpi.OUTPUT);
 	wpi.digitalWrite(pin, wpi.HIGH);
@@ -21,27 +22,27 @@ while (true) {
 		while (wpi.digitalRead(pin) == 1) {
 			err = false
 			prev = process.hrtime(old);
-			if (prev[1] * 1e-9 > 0.0004) {
+			if (prev[1] * 1e-9 > 0.001) {
 				err = true;
 				break;
 			}
 		}
 		if (err == false)
-			data.push(prev);
+			data.push(prev[1] * 1e-9);
 		cnt += 1
 		if (cnt > 41) {
 			break;
 		}
 	}
-	// console.log(data, data.length);
+	//console.log(data.length, data);
 
-	if (data[0] >= 0.00008) {
+	if (data[0] >= 0.00007) {
 		data.shift(0)
-		for ( var i in data) {
-			if (i >= 0.00008) {
-				console.log('no good data:invalid data');
+		for( let i=0; i<data.length; i++) {
+			if (data[i] > 0.00007) {
+				console.log('no good data:invalid data', i);
 				break;
-			} else if (i >= 0.00004) { // originally should be 70us
+			} else if (data[i] >= 0.00004) { // originally should be 70us
 				data2.push(1);
 			} else {
 				data2.push(0);
@@ -64,7 +65,7 @@ while (true) {
 			}
 		}
 	} else {
-		console.log('no good data');
+		console.log('no good data', data[0]);
 	}
-	wpi.delay(100)
+	wpi.delay(500)
 }

@@ -1,4 +1,4 @@
-var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi');
 var pin_charge = 18;
 var pin_measure = 23;
 

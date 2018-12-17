@@ -1,5 +1,5 @@
 var SerialPort = require('serialport');
-var port = new SerialPort("/dev/ttyS0", {baudRate:115200}, function(err){
+var port = new SerialPort("/dev/serial0", {baudRate:9600}, function(err){
 	if(err){
 		console.log('err:' + err.message);
 	}else{

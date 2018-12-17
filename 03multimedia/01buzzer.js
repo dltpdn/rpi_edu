@@ -1,4 +1,4 @@
-var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi');
 var sleep = require('sleep');
 
 var pin = 18

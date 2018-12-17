@@ -1,4 +1,4 @@
-var wpi = require('wiringpi-node');
+var wpi = require('node-wiring-pi');
 var readline = require('readline');
 
 var rl = readline.createInterface(process.stdin, process.stdout); 
@@ -6,7 +6,7 @@ var pin = 18;
 
 wpi.setup('gpio');
 wpi.pinMode(pin, wpi.OUTPUT);
-wpi.softPwmCreate(pin, 5, 200); //50Hz, 1Period = 20ms, 1pwm = 0.1ms
+wpi.softPwmCreate(pin, 5, 200); //1pulse = 0.1ms(100us), 50Hz, 1Period = 20ms
 
 rl.setPrompt("1:-90, 2:0, 3: +90 > ");
 

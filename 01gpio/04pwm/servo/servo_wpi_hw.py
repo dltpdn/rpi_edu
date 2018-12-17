@@ -10,7 +10,7 @@ wpi.pwmSetClock(384)	#19.2MHz / 384 = 50000Hz = 50KHz(0.02ms)
 wpi.pwmSetRange(1000) # 0.02ms * 1000 = 20ms, 50KHz / 1000 = 50Hz
 
 while True:
-	answer = raw_input("1:-90, 2:0, 3: +90 > ")
+	answer = input("1:-90, 2:0, 3: +90 > ")
 	if answer =='1':
 		wpi.pwmWrite(PIN_SERVO, 25)	# 25 * 0.02ms = 0.5ms
 	elif answer == '2':

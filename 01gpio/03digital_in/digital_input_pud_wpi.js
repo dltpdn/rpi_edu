@@ -1,10 +1,16 @@
-var wpi = require('wiring-pi');
+const wpi = require('node-wiring-pi');
 
-var pin = 18;
+const PIN_BTN = 23;
+let [val, old] = [-1, -1];
+
 wpi.wiringPiSetupGpio();
-wpi.pinMode(pin, wpi.INPUT);
-wpi.pullUpDnControl(pin, wpi.PUD_DOWN);
+wpi.pinMode(PIN_BTN, wpi.INPUT);
+wpi.pullUpDnControl(PIN_BTN, wpi.PUD_DOWN);
 
 while(true){
-	console.log(wpi.digitalRead(pin));
+	val = wpi.digitalRead(PIN_BTN);
+	if(val != old){
+		old = val;
+		console.log(val);
+	}
 }

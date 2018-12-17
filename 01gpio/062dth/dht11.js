@@ -1,4 +1,4 @@
-var sensor = require('node-dht-sensor');
+var sensor = require('node-dht-sensor'); //bcm2835 library
 var dht = 11;
 var pin = 18;
 

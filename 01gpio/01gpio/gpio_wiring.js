@@ -1,6 +1,10 @@
-var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi'); //npm install node-wiring-pi
+//var wpi = require('wiring-pi');
+//var wpi = require('wiringpi-node');
+console.log(wpi);
 
-wpi.setup('gpio'); // wpi.wiringPiSetupGpio();
+//wpi.setup('gpio');
+wpi.wiringPiSetupGpio();
 wpi.pinMode(18, wpi.OUTPUT);
 
 var cnt = 0;

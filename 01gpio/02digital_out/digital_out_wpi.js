@@ -1,4 +1,4 @@
-var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi');
 var readline = require('readline');
 
 var rl = readline.createInterface(process.stdin, process.stdout);

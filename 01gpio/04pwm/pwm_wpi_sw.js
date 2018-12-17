@@ -1,4 +1,5 @@
-var wpi = require('wiring-pi');
+//var wpi = require('wiring-pi');
+var wpi = require('node-wiring-pi');
 var pin = 18;
 
 wpi.setup('gpio');
