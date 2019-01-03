@@ -1,6 +1,6 @@
 import serial, threading
 
-port = serial.Serial("/dev/serial0", baudrate=115200, timeout=3.0)
+port = serial.Serial("/dev/serial0", baudrate=9600, timeout=3.0)
 
 class ReadThread(threading.Thread):
     flag = True
@@ -8,8 +8,7 @@ class ReadThread(threading.Thread):
     def run(self):
         while self.flag:
             line = self.readline()
-            if len(line) > 0 :
-                print("recv:" +line)
+            print("recv:" +line)
         print("read thread died.")
         
     
@@ -17,9 +16,11 @@ class ReadThread(threading.Thread):
         line = ''
         while True:
             ch = port.read().decode()
-            line +=ch
             if ch =='\r' or ch=='\n' or ch == '':
-                return line
+                if len(line) > 0 :
+                    return line
+            else:
+                line +=ch
     
 try:
     if port.isOpen() :
