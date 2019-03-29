@@ -19,4 +19,4 @@ while True:
     returnedList = blescan.parse_events(sock, 10)
     print( "----------")
     for beacon in returnedList:
-        print beacon
+        print( beacon)
