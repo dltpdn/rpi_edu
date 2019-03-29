@@ -137,15 +137,15 @@ def parse_events(sock, loop_count=100):
         elif event == bluez.EVT_DISCONN_COMPLETE:
             i =0 
         elif event == LE_META_EVENT:
-            print(pkt[3])
-            subevent, = struct.unpack("B", pkt[3])
-            print(subevent)
+            #subevent, = struct.unpack("B", pkt[3])
+            subevent = pkt[3] 
             pkt = pkt[4:]
             if subevent == EVT_LE_CONN_COMPLETE:
                 le_handle_connection_complete(pkt)
             elif subevent == EVT_LE_ADVERTISING_REPORT:
                 #print "advertising report"
-                num_reports = struct.unpack("B", pkt[0])[0]
+                #num_reports = struct.unpack("B", pkt[0])[0]
+                num_reports = pkt[0]
                 report_pkt_offset = 0
                 for i in range(0, num_reports):
         
