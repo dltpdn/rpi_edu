@@ -4,8 +4,8 @@ cascade_xml = 'haarcascade_frontalface_default.xml'
 cascade = cv2.CascadeClassifier(cascade_xml)
 
 cam = cv2.VideoCapture(0)
-cam.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+cam.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
+cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 320)
 
 while True:
     ret, img = cam.read()
