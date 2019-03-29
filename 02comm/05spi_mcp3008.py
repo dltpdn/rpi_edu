@@ -2,6 +2,7 @@ import spidev, time
 
 spi = spidev.SpiDev()
 spi.open(0,0) #device:0, bus(slave) : 0
+spi.max_speed_hz = 10000
 
 def analog_read(channel):
     ret = spi.xfer2([1, (8 + channel) << 4, 0])
