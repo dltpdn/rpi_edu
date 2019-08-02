@@ -13,7 +13,7 @@ pin_dht11 = 24
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_led, GPIO.OUT)
-GPIO.setup(pin_btn, GPIO.IN)
+GPIO.setup(pin_btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 sensor = Adafruit_DHT.DHT11
 
 @app.route('/')
