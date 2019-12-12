@@ -1,15 +1,15 @@
 #if 0
-#define BCM2708_PERI_BASE        0x20000000
+#define PERI_BASE        0x20000000  //Pi 1(BCM2835)
 #else
-#define BCM2708_PERI_BASE        0x3F000000
+#define PERI_BASE        0x3F000000  //Pi 2+(BCM2836+)
 #endif
 
-#define GPIO_BASE                (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
-#define GPIO_SIZE				(256)
+#define GPIO_BASE                (PERI_BASE + 0x200000) /* GPIO controller */
+#define GPIO_SIZE				(256)  // GPIO Registor size,  0x7E200B0 - 0x7E2000000 + 14 = 180
 #if 0
-#define MMAP_DEV			"/dev/mem"
+#define MMAP_DEV			"/dev/mem"  //for root
 #else
-#define MMAP_DEV			"/dev/gpiomem"
+#define MMAP_DEV			"/dev/gpiomem"  //root less, for gpio group
 #endif
 
 #include <stdio.h>
@@ -20,26 +20,16 @@
 
 int  mem_fd;
 void *gpio_map;
-
-// I/O access
 volatile unsigned *gpio;
 
+// datasheet p.90~
+#define GPIO_IN(pin) (*(gpio+((pin)/10)) &= ~(7<<(((pin)%10)*3)))  // set direction to in
+#define GPIO_OUT(pin) (*(gpio+((pin)/10)) |=  (1<<(((pin)%10)*3))) // set direction to out
+#define GPIO_SET(pin) (*(gpio+7) = 1<<pin)  // set,   HIGH
+#define GPIO_CLR(pin) (*(gpio+10) = 1<<pin) // clear, LOW
 
-// GPIO setup macros. Always use INP_GPIO(x) before using OUT_GPIO(x) or SET_GPIO_ALT(x,y)
-#define GPIO_IN(g) (*(gpio+((g)/10)) &= ~(7<<(((g)%10)*3)))
-#define GPIO_OUT(g) (*(gpio+((g)/10)) |=  (1<<(((g)%10)*3)))
-#define GPIO_SET_ALT(g,a) *(gpio+(((g)/10))) |= (((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))
 
-#define GPIO_SET(g) (*(gpio+7) = 1<<g)  // sets   bits which are 1 ignores bits which are 0
-#define GPIO_CLR(g) (*(gpio+10) = 1<<g) // clears bits which are 1 ignores bits which are 0
-
-#define GPIO_GET(g) (*(gpio+13)&(1<<g)) // 0 if LOW, (1<<g) if HIGH
-
-#define GPIO_PULL *(gpio+37) // Pull up/pull down
-#define GPIO_PULLCLK0 *(gpio+38) // Pull up/pull down clock
-
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
   int pin = 18, i=0;
 
   if ((mem_fd = open(MMAP_DEV, O_RDWR|O_SYNC) ) < 0) {
@@ -48,15 +38,14 @@ int main(int argc, char **argv)
   }
 
   gpio_map = mmap(
-     NULL,             //Any adddress in our space will do
-     GPIO_SIZE,       //Map length
+     NULL,             // Any adddress in our space will do
+     GPIO_SIZE,       // Map length
      PROT_READ|PROT_WRITE,// Enable reading & writting to mapped memory
-     MAP_SHARED,       //Shared with other processes
-     mem_fd,           //File to map
-     GPIO_BASE         //Offset to GPIO peripheral
+     MAP_SHARED,       // Shared with other processes
+     mem_fd,           // fd to map
+     GPIO_BASE         // Offset to GPIO peripheral
   );
-
-  close(mem_fd); //No need to keep mem_fd open after mmap
+  close(mem_fd); //No need to keep mem_fd after opening mmap
 
   if (gpio_map == MAP_FAILED) {
      printf("mmap error %d\n", (int)gpio_map);//errno also set!
@@ -82,8 +71,7 @@ int main(int argc, char **argv)
 } // main
 
 
-/*
-$ gcc –o  gpio_register gpio_register
-$ sudo ./wiringpi_led
-
+/* for compile and run
+$ gcc -o  gpio_register gpio_register
+$ sudo ./gpio_register.c
 */
