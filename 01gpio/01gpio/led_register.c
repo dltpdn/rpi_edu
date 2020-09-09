@@ -82,7 +82,12 @@ int main(int argc, char **argv){
 } // main
 
 
-/* for compile and run
-$ gcc led_blink_register.c -o led_blink_register
-$ sudo ./led_blink_register
+/* for compile and run as main
+$ gcc led_register.c -o led_register
+$ sudo ./led_register
+*/
+
+/* for compile as shared object
+$ gcc led_register.c -o led_register.so -shared
+$ sudo ./led_register
 */

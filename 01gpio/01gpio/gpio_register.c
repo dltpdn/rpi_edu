@@ -72,6 +72,6 @@ int main(int argc, char **argv){
 
 
 /* for compile and run
-$ gcc -o  gpio_register gpio_register
-$ sudo ./gpio_register.c
+$ gcc  gpio_register -o  gpio_register.c
+$ sudo ./gpio_register
 */
