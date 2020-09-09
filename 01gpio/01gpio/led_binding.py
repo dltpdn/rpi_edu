@@ -1,3 +1,9 @@
+'''
+Before running this code 
+you should compile led_register.c file 
+as led_register.so file.
+'''
+
 import ctypes
 import time
 
