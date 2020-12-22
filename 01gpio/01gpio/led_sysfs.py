@@ -27,3 +27,4 @@ f = open('/sys/class/gpio/unexport', 'w')
 f.write('%d'%pin_gpio)
 f.close()
 print('unexport done.')
+  

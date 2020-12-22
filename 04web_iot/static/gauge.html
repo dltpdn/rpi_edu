@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.jqwidgets.com/public/jqwidgets/styles/jqx.base.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://www.jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('#gauge').jqxGauge({
+            width : 150,
+			height : 150,
+			min : -20,
+			max : 50,
+			ranges : [ {
+				startValue : -20,
+				endValue : 0,
+				style : {
+					fill : '#e2e2e2'
+				}
+			}, {
+				startValue : 0,
+				endValue : 10,
+				style : {
+					fill : '#00ccff'
+				},
+			}, {
+				startValue : 10,
+				endValue : 25,
+				style : {
+					fill : '#4cb848'
+				},
+			}, {
+				startValue : 25,
+				endValue : 35,
+				style : {
+					fill : '#fad00b'
+				},
+			}, {
+				startValue : 35,
+				endValue : 50,
+				style : {
+					fill : '#e53d37'
+				},
+			}],
+			labels : {
+				position : 'outside'
+			},
+			animationDuration : 500,
+			border : {
+				visible : false
+			},
+			caption : {
+				value : '온도 : 0°C'
+            }
+        });
+        $('#btn').click(()=>{
+            var val = $('#val').val()
+            $('#gauge').jqxGauge('val', val);
+        });
+    });
+        
+    </script>
+</head>
+<body>
+    <div id="gauge"></div>
+    <input value="100" id="val"/>
+    <input type="button" id="btn" value="apply"/>
+</body>
+</html>
