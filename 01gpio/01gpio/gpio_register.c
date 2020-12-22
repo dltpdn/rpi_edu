@@ -23,55 +23,56 @@ void *gpio_map;
 volatile unsigned *gpio;
 
 // datasheet p.90~
-#define GPIO_IN(pin) (*(gpio+((pin)/10)) &= ~(7<<(((pin)%10)*3)))  // set direction to in
-#define GPIO_OUT(pin) (*(gpio+((pin)/10)) |=  (1<<(((pin)%10)*3))) // set direction to out
+#define GPIO_IN(pin) (*(gpio+((pin)/10)) = ~(7<<(((pin)%10)*3)))  // set direction to in
+#define GPIO_OUT(pin) (*(gpio+((pin)/10)) =  (1<<(((pin)%10)*3))) // set direction to out
+
 #define GPIO_SET(pin) (*(gpio+7) = 1<<pin)  // set,   HIGH
 #define GPIO_CLR(pin) (*(gpio+10) = 1<<pin) // clear, LOW
 
 
 int main(int argc, char **argv){
-  int pin = 18, i=0;
+   int pin = 18, i=0;
 
-  if ((mem_fd = open(MMAP_DEV, O_RDWR|O_SYNC) ) < 0) {
-     printf("can't open /dev/mem \n");
-     exit(-1);
-  }
+   if ((mem_fd = open(MMAP_DEV, O_RDWR|O_SYNC) ) < 0) {
+      printf("can't open /dev/mem \n");
+      exit(-1);
+   }
 
-  gpio_map = mmap(
-     NULL,             // Any adddress in our space will do
-     GPIO_SIZE,       // Map length
-     PROT_READ|PROT_WRITE,// Enable reading & writting to mapped memory
-     MAP_SHARED,       // Shared with other processes
-     mem_fd,           // fd to map
-     GPIO_BASE         // Offset to GPIO peripheral
-  );
-  close(mem_fd); //No need to keep mem_fd after opening mmap
+   gpio_map = mmap(
+      NULL,             // Any adddress in our space will do
+      GPIO_SIZE,       // Map length
+      PROT_READ|PROT_WRITE,// Enable reading & writting to mapped memory
+      MAP_SHARED,       // Shared with other processes
+      mem_fd,           // fd to map
+      GPIO_BASE         // Offset to GPIO peripheral
+   );
+   close(mem_fd); //No need to keep mem_fd after opening mmap
 
-  if (gpio_map == MAP_FAILED) {
-     printf("mmap error %d\n", (int)gpio_map);//errno also set!
-     exit(-1);
-  }
+   if (gpio_map == MAP_FAILED) {
+      printf("mmap error %d\n", (int)gpio_map);//errno also set!
+      exit(-1);
+   }
 
-  gpio = (volatile unsigned *)gpio_map;
+   gpio = (volatile unsigned *)gpio_map;
 
-  GPIO_OUT(pin);
-  printf("pin%d was set OUT.\n");
-  for(i = 0; i<5; i++){
-	  GPIO_SET(pin);
-	  printf("pin%d On\n", pin);
-	  sleep(1);
-	  GPIO_CLR(pin);
-	  printf("pin%d Off\n", pin);
-	  sleep(1);
-  }
-
-	munmap(gpio_map, GPIO_SIZE);
+   GPIO_OUT(pin);
+   printf("pin%d was set OUT.\n", pin);
+   for(i = 0; i<5; i++){
+      GPIO_SET(pin);
+      printf("pin%d On\n", pin);
+      sleep(1);
+      GPIO_CLR(pin);
+      printf("pin%d Off\n", pin);
+      sleep(1);
+   }
+   GPIO_IN(pin);
+   munmap(gpio_map, GPIO_SIZE);
 	close(mem_fd);
-  return 0;
+   return 0;
 } // main
 
 
 /* for compile and run
-$ gcc  gpio_register -o  gpio_register.c
+$ gcc  gpio_register.c -o gpio_register 
 $ sudo ./gpio_register
 */
