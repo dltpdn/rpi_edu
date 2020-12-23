@@ -6,7 +6,6 @@
 #define LED 18
 int main( void) {
         int i;
-
         //wiringPiSetup();
         wiringPiSetupGpio();
         pinMode(LED, OUTPUT);
