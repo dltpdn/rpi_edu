@@ -4,7 +4,7 @@ import stat
 pin_gpio = 18
 
 f = open('/sys/class/gpio/export', 'w')
-f.write(pin_gpio)
+f.write(str(pin_gpio))
 f.close()
 print('export done.')
 
