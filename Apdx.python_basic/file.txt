@@ -1,3 +1,0 @@
-hello world
-this is my first file.
-I want this file to be read by the python program that I made.

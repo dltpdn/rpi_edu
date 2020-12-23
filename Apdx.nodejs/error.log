@@ -1,2 +1,0 @@
-stderr : console.error 
-stderr : console.warn 
