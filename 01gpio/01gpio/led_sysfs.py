@@ -1,10 +1,16 @@
 import time
-
+import os
+import stat
 pin_gpio = 18
+
 f = open('/sys/class/gpio/export', 'w')
-f.write(str(pin_gpio))
+f.write(pin_gpio)
 f.close()
 print('export done.')
+
+dir = '/sys/class/gpio/gpio%d/direction'%pin_gpio
+while not os.path.exists(dir) or not os.access(dir, os.W_OK):
+    pass
 
 f = open('/sys/class/gpio/gpio%d/direction'%pin_gpio, 'w')
 print('direction done')
