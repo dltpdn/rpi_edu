@@ -52,7 +52,7 @@ void init(){
 void setOut(int pin){
     // datasheet p.90~
     // set GPIO direction to out
-    *(gpio+((pin)/10)) |=  (1<<(((pin)%10)*3));
+    *(gpio+((pin)/10)) =  (1<<(((pin)%10)*3));
 }
 void output(int pin, int value){
     if(value == LOW){
