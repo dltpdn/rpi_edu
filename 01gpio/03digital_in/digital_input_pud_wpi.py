@@ -1,9 +1,13 @@
 import wiringpi as wpi
 
-PIN_SW = 18;
+PIN = 18
 wpi.wiringPiSetupGpio()
-wpi.pinMode(PIN_SW, wpi.INPUT)
-wpi.pullUpDnControl(PIN_SW, wpi.PUD_DOWN)
-
+wpi.pinMode(PIN, wpi.INPUT)
+wpi.pullUpDnControl(PIN, wpi.PUD_UP)
+#wpi.pullUpDnControl(PIN, wpi.PUD_DOWN)
+old_val = -1
 while True:
-	print(wpi.digitalRead(PIN_SW))
+	val = wpi.digitalRead(PIN)
+	if val != old_val:
+		old_val = val
+		print(val)
