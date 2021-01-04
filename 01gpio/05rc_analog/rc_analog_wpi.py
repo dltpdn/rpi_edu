@@ -2,7 +2,7 @@ import wiringpi as wpi
 PIN_CHARGE = 18
 PIN_MEASURE = 23
 
-wpi.wiringSetupGpio();
+wpi.wiringSetupGpio()
 while True:
 	wpi.pinMode(PIN_CHARGE, wpi.INPUT)
 	wpi.pinMode(PIN_MEASURE, wpi.OUTPUT)
