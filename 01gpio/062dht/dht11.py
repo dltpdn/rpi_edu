@@ -1,62 +1,45 @@
-import RPi.GPIO as GPIO
-import time
+import RPi.GPIO as GPIO, time
+
+# return : (humidity, temperature, message)) 
+def read_dht(pin):
+    data = [0,0,0,0,0]
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, 1)
+    time.sleep(0.5)
+    GPIO.output(pin, 0)
+    time.sleep(0.018)
+    GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    time.sleep(0.000001)
+    
+    old_val = -1
+    for i in range(83): # 40*2+3
+        time_s = time.time()
+        while(True):
+            val = GPIO.input(pin)
+            duration = time.time() - time_s
+            if val == old_val:
+                if duration > 0.001 :
+                    return (None, None, "error:timeout")
+            else :
+                if i >=3 and old_val == 1:
+                    index = (i-3)//16
+                    data[index] <<=1
+                    if duration > 0.000048:
+                        data[index] |= 1                                                
+                old_val = val
+                break
+    if(data[4]== (data[0]+ data[1]+data[2]+data[3])):
+        humi = data[0] + data[1]/10.0
+        temp = data[2] +data[3]/10.0
+        return (humi, temp, "OK")
+    else:
+        return (None, None, "error:checksum")
  
 PIN_DHT11 = 18 
-GPIO.setmode(GPIO.BCM)
-
-while True: 
-    data = []
-    data2 = []
-    cnt = 0 
-
-    GPIO.setup(PIN_DHT11, GPIO.OUT)
-    GPIO.output(PIN_DHT11, 0)
-    time.sleep(0.018)
-    GPIO.setup(PIN_DHT11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-    while True:
-        err = True
-        while(GPIO.input(PIN_DHT11)==0):
-            pass
-        old = time.time()
-        while(GPIO.input(PIN_DHT11) == 1 ):
-            err = False
-            end = time.time()
-            if end - old > 0.001 :
-                err = True
-                break
-        if err == False:
-            data.append(end-old)
-        cnt +=1
-        if(cnt > 41):
-            break
-    #print data , len(data)
-    
-    if len(data) > 40 and data[0] >= 0.00008:
-        data.pop(0)
-        for i in data:
-            if i >=0.00008:
-                print('no good data:invalid data')
-                break
-            elif i >= 0.00004 : #originally should be 70us
-                data2.append(1)
-            else:
-                data2.append(0)
-        #print data2, len(data2)
-        if len(data2) !=  40:
-            print('no good data:not enough data.')
-        else:
-            humi1 =  int("".join(str(x) for x in data2[0:8]), 2)
-            humi2 =  int("".join(str(x) for x in data2[9:16]), 2)
-            temp1 = int("".join(str(x) for x in data2[17:24]), 2)
-            temp2 =  int("".join(str(x) for x in data2[25:32]), 2)
-            crc =  int("".join(str(x) for x in data2[33:40]), 2)
-            if(crc != (humi1 + humi2 + temp1 + temp2)):
-                print('no good data:crc err')
-            else:
-                print('huminity : %d.%d%%, temperatur:%d.%dC' %(humi1, humi2, temp1, temp2))
-    
+while(True):
+    humi, temp, msg = read_dht(PIN_DHT11)
+    if humi is None or temp is None :
+        print(msg)
     else:
-        print('no good data')
-    time.sleep(0.1)    
-
+        print(f'huminity:{humi}%, temperature:{temp}*C')
