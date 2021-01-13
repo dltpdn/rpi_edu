@@ -2,18 +2,16 @@ import bluetooth as bt
 
 svc_name = "MyService"
 print("finding service : %s" % svc_name)
-services=bt.find_service(name=svc_name,
-                            uuid=bt.SERIAL_PORT_CLASS)
-print("Found %d services" % len(services))
-for i in range(len(services)):
-   match=services[i]
-   
+uuid ='c2575952-d199-4bc0-8bd4-1aa48930a8fa'
+services=bt.find_service(svc_name, uuid=uuid)
+print(f"Found len(services) services")
+for match in services:
+   print(match)
    if(match["name"]=="MyService"):
       port=match["port"]
       name=match["name"]
       host=match["host"]
       print("Found service :", name, host, port)
-
       socket=bt.BluetoothSocket( bt.RFCOMM )
       socket.connect((host, port))
       socket.send(b"Hello world 2")
