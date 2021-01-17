@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LED</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#btn_on').click(function(){
+		var url = '/led/on';
+		$.ajax(url).done(function(data){
+			console.log(data);
+			$('#status').text(data);
+		});
+	})
+	$('#btn_off').click(function(){
+		var url = '/led/off';
+		 $.ajax(url).done(function(data){
+			 console.log(data)
+			 $('#status').text(data);
+		 });
+	});
+});
+</script>
+</head>
+<body>
+	<h1>Web Iot Remote Control Example</h1>
+	<p>Led - GPIO 18</p>
+	<button id="btn_on">Led On</button>
+	<button id="btn_off">Led Off</button><br/>
+	<div id="status"></div>
+</body>
+</html>

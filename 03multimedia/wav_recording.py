@@ -7,7 +7,7 @@ Rate = 48000
 Chunk = 12000
 
 p = pyaudio.PyAudio()
-stream = p.open(format=Format, channels=1, rate=Rate, input=True, frames_per_buffer=Chunk)
+stream = p.open(format=Format, channels=1, rate=Rate, input=True, frames_per_buffer=Chunk, input_device_index=1)
 print("* recording..")
 frames = []
 for i in range(0, int(Rate/Chunk * RSec)):

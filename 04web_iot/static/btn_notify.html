@@ -9,6 +9,9 @@
 	border-radius : 50px;
 	border: 1px solid #eaeaea;
 }
+.gray{
+	background-color : #999;
+}
 .green{
 	background-color : #0f0;
 }
@@ -16,36 +19,30 @@
 	background-color : #f00;
 }
 </style>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
 <script type="text/javascript">
-window.onload = function(){
-	var btn_status = document.querySelector('#btn_status');
-	socket = io.connect('http://' + document.domain + ':' + location.port);
+$(function(){
+	socket = io();
     socket.on('connect', function() {
-    	console.log('ws connect.');
-       // socket.send(id.value + " login.");
+		console.log('ws connected.');
+    	$('#btn_status').removeClass('gray').addClass('green');
     });
-    socket.on('message', function(data){
-    	console.log('message:'+data.data);
-    	if(data.data == '1'){
-    		btn_status.className = 'red'
+    socket.on('notify', function(data){
+    	console.log('message:'+data);
+    	if(data == '1'){
+			console.log('on');
+    		$('#btn_status').removeClass('green').addClass('red');
     	}else{
-    		btn_status.className = 'green'
+    		$('#btn_status').removeClass('red').addClass('green');
     	}
     });
-
-    socket.on('btn', function(data){
-    	console.log('btn:'+data.data)
-    	btn_status.className = 'img_btn_on'
-    });
-}
-
+});
 </script>
 </head>
 <body>
 	<h1>Web IoT Switch Notification</h1>
 	<p>Button Switch GPIO 23</p>
-	<div id="btn_status" class="green"></div>
+	<div id="btn_status" class="gray"></div>
 </body>
 </html>

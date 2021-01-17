@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://www.jqwidgets.com/public/jqwidgets/styles/jqx.base.css"/>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://www.jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#temp').jqxGauge({
+        width : 150,
+        height : 150,
+        min : -30,
+        max : 60,
+        labels : {
+            position : 'outside'
+        },
+        animationDuration : 500,
+        border : {
+            visible : false
+        },
+        caption : {
+            value : '온도 °C'
+        }
+    });
+    $('#humi').jqxGauge({
+        width : 150,
+        height : 150,
+        min : 0,
+        max : 100,
+        labels : {
+            position : 'outside'
+        },
+        animationDuration : 500,
+        border : {
+            visible : false
+        },
+        caption : {
+            value : '습도 %'
+        }
+    });
+    var timer = setInterval(function(){
+            $.ajax('/monitor', dataType="json")
+		    .done(function(data){
+                $('#temp').jqxGauge('val', data.temp);
+                //$('#temp').jqxGauge('caption', "온도:"+data.temp+"°C");
+                $('#humi').jqxGauge('val', data.humi);
+                //$('#humi').jqxGauge('val', data.humi);
+		    });
+    }, 5000);
+    $('#stop').click(function(){
+        clearInterval(timer);
+    });
+});
+    
+</script>
+</head>
+<body>
+    <div id="temp"></div>
+    <div id="humi"></div>
+    <button id="stop">stop</button>
+</body>
+</html>

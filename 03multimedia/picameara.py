@@ -11,7 +11,7 @@ with picamera.PiCamera() as camera:
                 camera.capture('/home/pi/photo%s.jpg' %now_str)
             elif shutter == 2:
                 camera.start_recording('/home/pi/video%s.h264' %now_str)
-                input('insert key when you want to stop recoding.')
+                input('insert enter key when you want to stop recoding.')
                 camera.stop_recording()
     finally:
         camera.stop_preview()

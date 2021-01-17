@@ -2,35 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DHT11 Example</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-window.onload = function(){
-	var temp = document.querySelector('#temp');
-	var humi = document.querySelector('#humi');
-	
+$(function(){
 	setInterval(function(){
-		sendAjax('/monitor', function(data){
-			var r = JSON.parse(data);
-			temp.textContent = r.temp;
-			humi.textContent = r.humi;
+		$.ajax('/monitor', dataType="json")
+		.done(function(data){
+			$('#temp').text(data.temp);
+			$('#humi').text(data.humi);
 		});
-	}, 1000);
-	
-	function sendAjax(url, fn){
-		xhr =new XMLHttpRequest();
-		xhr.onreadystatechange = function(){
-		//	console.log(xhr.readyState)
-			if(xhr.readyState == 4){
-				console.log(xhr.responseText)
-				if(fn){
-					fn(xhr.responseText);
-				}
-			}
-		}
-		xhr.open('GET', url);
-		xhr.send();  
-	}
-}
+	}, 3000);
+});
 
 </script>
 </head>
@@ -38,7 +21,7 @@ window.onload = function(){
 	<h1>Web IoT Remot Monitoring</h1>
 	<p>DHT-11 GPIO 24</p>
 	<ul>
-		<li><label>Tempature:</label><span id="temp">--</span>°C<br/></li>
+		<li><label>Temperature:</label><span id="temp">--</span>°C<br/></li>
 		<li><label>Humidity:</label><span id="humi">--</span>%<br/></li>
 	</ul>
 </body>

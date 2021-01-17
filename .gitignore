@@ -1,4 +1,5 @@
 /.pydevproject
 .vscode
 .project
+.gitignore
 

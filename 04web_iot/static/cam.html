@@ -22,43 +22,25 @@ img:-moz-full-screen{
 	height:100%;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" charset="utf-8">
-window.onload = function(){
-	var img = document.querySelector('#img');
-	var btn_start = document.querySelector('#btn_start');
-	var btn_stop = document.querySelector('#btn_stop');
+$(function(){
 	var b64Prefix = "data:image/png;base64,";
 	var fps = 15;
 	
- 	var socket = null;
- 	var running = true;
  	var timer;
- 	btn_stop.onclick = function(){
+ 	$('#btn_stop').click(function(){
  		clearInterval(timer);
- 	}
- 	btn_start.onclick = function(){
+ 	});
+ 	$('#btn_start').click(function(){
  	    timer = setInterval(function(){
- 	 	    var xhr = new XMLHttpRequest();
- 	 	    xhr.open('GET', '/cctv')
- 	 	    xhr.onreadystatechange = function(){
- 				if(xhr.readyState == 4){
- 					///console.log(xhr.responseText);
- 					img.src = b64Prefix +xhr.responseText;
- 				} 
- 	 	    }
- 		    xhr.send();
+ 	 	    $.ajax('/cam').done(function(data){
+				console.log(data);
+				$('#img').attr('src', b64Prefix + data);
+			});
  	    }, 1000/fps);
- 	}
- 	img.onclick = function(){
- 		if(img.requestFullscreen){
-			img.requestFullscreen();
-		}else if(img.mozRequestFullScreen){
-			img.mozRequestFullScreen()
-		}else if(img.webkitRequestFullscreen){
-			img.webkitRequestFullscreen();
-		}
- 	}
-}
+ 	});
+});
 </script>
 </head>
 <body>
