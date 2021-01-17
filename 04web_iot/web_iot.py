@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import *
 import RPi.GPIO as GPIO
 from flask_socketio import SocketIO, send
 import Adafruit_DHT, json, time
@@ -21,49 +21,43 @@ def main():
     return redirect('/static/web_iot.html')
 
 
-@app.route('/operate/<cmd>')
+@app.route('/led/<cmd>')
 def op(cmd):
-    val = request.values['val']   
-    if cmd == "led":
-        val = request.values['val']   
-        print('/operate/', cmd, val) 
-        if val == 'on':
-            GPIO.output(pin_led, True)
-            print(pin_led, 'on')
-        elif val == 'off':
-            GPIO.output(pin_led, False)
-        return 'OK'
+    if cmd == "on":
+        GPIO.output(pin_led, True)
+        return 'Led On'
+    elif cmd == 'off':
+        GPIO.output(pin_led, False)
+        return 'Led Off'
 
 
 @app.route('/monitor')
 def monitoring():
     try:
-        print('/monitor')
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin_dht11)
         obj = {'humi' : humidity, 'temp' : temperature}
-        print(obj)
-        return json.dumps(obj)
+        return Response(json.dumps(obj), content_type='application/json')
     except Exception as e:
         print('err', e)
 
 
 @socketio.on('connect')
 def connect():
-    send({'data': 'welcome'})
+    print("client connected.")
     
 def my_callback(channel):
     print('Edge detected on channel %s state %s'% (channel, GPIO.input(channel))) 
     val =GPIO.input(channel)
     if val == 1:
-        socketio.send( {'data': '1' })
+        socketio.emit('notify', '1')
     else:
-        socketio.send({'data': '0'})
-    print('btn pressed', 0)
+        socketio.emit('notify', '0')
+
 
 if __name__ == '__main__':
     try:
         GPIO.add_event_detect(pin_btn, GPIO.BOTH, callback=my_callback)
-        socketio.run(app, host='0.0.0.0')
+        socketio.run(app, host='0.0.0.0', port=8080)
     finally:
         print('cleaning up')
         GPIO.cleanup()
