@@ -22,7 +22,7 @@ int main( void) {
 
 
 /*
-$ gcc –o wiringpi_led wiringpi_led.c –lwiringPi
-$ sudo ./wiringpi_led
+$ gcc led_wiringpi.c –o led_wiringpi  –lwiringPi
+$ sudo ./led_wiringpi
 
 */
