@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <unistd.h>
-#include "led_register.h"
+#include "led_lib.h"
 
 void init(){
     if ((mem_fd = open(MMAP_DEV, O_RDWR|O_SYNC) ) < 0) {
@@ -44,5 +44,5 @@ void output(int pin, int value){
 }
 
 /* for compiling as shared object
-$ gcc led_lib.c -o libled_lib -shared
+$ gcc led_lib.c -o libled_lib.so -shared
 */
