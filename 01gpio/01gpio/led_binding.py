@@ -8,7 +8,7 @@ $ gcc led_register.c -o led_register.so -shared
 import ctypes
 import time
 
-gpio = ctypes.CDLL('./libled_lib.so')
+gpio = ctypes.CDLL('./led_lib.so')
 
 gpio.init()
 gpio.setOut(18)

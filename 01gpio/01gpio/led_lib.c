@@ -44,5 +44,5 @@ void output(int pin, int value){
 }
 
 /* for compiling as shared object
-$ gcc led_lib.c -o led_lib.so -shared
+$ gcc led_lib.c -o led_lib.so -shared -fPIC
 */
