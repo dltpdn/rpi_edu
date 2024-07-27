@@ -19,7 +19,7 @@ int main(int argc, char **argv){
     return 0;
 } // main
 /* for compiling with shared object
-$ gcc led_lib_main.c -o led_lib_main -lled_lib -L.
+$ gcc led_lib_main.c -o led_lib_main -l:led_lib -L.
 
 for running 
 $ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./led_lib_main

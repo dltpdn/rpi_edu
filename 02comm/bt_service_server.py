@@ -9,7 +9,7 @@ server = bt.BluetoothSocket( bt.RFCOMM )
 server.bind(("", bt.PORT_ANY ))
 server.listen(1)
 service_name = "MyService"
-uuid = "c2575952-d199-4bc0-8bd4-1aa48930a8fa"
+uuid = "c2575952-d199-4bc0-8bd4-1aa48930a8fa" # generated as a sample
 bt.advertise_service(server, service_name, service_id=uuid,
                      service_classes=[uuid, bt.SERIAL_PORT_CLASS],
                      profiles=[bt.SERIAL_PORT_PROFILE])

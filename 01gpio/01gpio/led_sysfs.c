@@ -58,6 +58,6 @@ int main( int argc, char **argv) {
        
        
 /*
-$ gcc led_sysfs.c –o led_sysfs 
+$ gcc led_sysfs.c -o led_sysfs
 $ sudo ./led_sysfs
 */
