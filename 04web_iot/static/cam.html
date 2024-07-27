@@ -25,31 +25,22 @@ img:-moz-full-screen{
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 $(function(){
-	var b64Prefix = "data:image/png;base64,";
-	var fps = 15;
-	
- 	var timer;
  	$('#btn_stop').click(function(){
- 		clearInterval(timer);
+        $('#img').attr("src", "")
  	});
  	$('#btn_start').click(function(){
- 	    timer = setInterval(function(){
- 	 	    $.ajax('/cam').done(function(data){
-				console.log(data);
-				$('#img').attr('src', b64Prefix + data);
-			});
- 	    }, 1000/fps);
+         const url = '/cam_mjpg'
+ 	    $('#img').attr('src', url)
  	});
 });
 </script>
 </head>
 <body>
-
+<h1>Camera Streaming Test Page.</h1>
+<p>Using MJPG</p>
 <button id="btn_start">start</button><button id="btn_stop">stop</button><br/>
 <div id="img_wrap">
 	<img src="" id="img" />
 </div>
-
-
 </body>
 </html>
